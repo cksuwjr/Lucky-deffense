@@ -1,0 +1,797 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b507dc0d881e0c4ebfb74053820fe3f, type: 3}
+  m_Name: DataTable
+  m_EditorClassIdentifier: 
+  UserData:
+  - id: 0
+    name: cha
+  - id: 1
+    name: are
+  UnitData:
+  - id: 100
+    name: BowMan
+    hp: 0
+    mp: 100
+    maxHP: 0
+    maxMP: 100
+    moveSpeed: 2
+    money: 0
+    animatorSrc: Animations/BowMan
+    attackPower: 8
+    attackSpeed: 4
+    attackRange: 2
+    attackType: long
+    attackCount: 1
+  - id: 101
+    name: SwordMan
+    hp: 0
+    mp: 100
+    maxHP: 0
+    maxMP: 100
+    moveSpeed: 1
+    money: 0
+    animatorSrc: Animations/SwordMan
+    attackPower: 25
+    attackSpeed: 2
+    attackRange: 0.65
+    attackType: melee
+    attackCount: 1
+  MonsterData:
+  - id: 1000
+    name: rat
+    hp: 20
+    mp: 0
+    maxHP: 20
+    maxMP: 0
+    moveSpeed: 2
+    money: 3
+    animatorSrc: Animations/Rat
+    attackPower: 0
+    attackSpeed: 0
+    attackRange: 0
+    attackType: none
+    attackCount: 0
+  - id: 1001
+    name: rat
+    hp: 30
+    mp: 0
+    maxHP: 30
+    maxMP: 0
+    moveSpeed: 2.1
+    money: 3.3
+    animatorSrc: Animations/Rat
+    attackPower: 0
+    attackSpeed: 0
+    attackRange: 0
+    attackType: none
+    attackCount: 0
+  - id: 1002
+    name: rat
+    hp: 40
+    mp: 0
+    maxHP: 40
+    maxMP: 0
+    moveSpeed: 2.2
+    money: 3.6
+    animatorSrc: Animations/Rat
+    attackPower: 0
+    attackSpeed: 0
+    attackRange: 0
+    attackType: none
+    attackCount: 0
+  - id: 1003
+    name: rat
+    hp: 50
+    mp: 0
+    maxHP: 50
+    maxMP: 0
+    moveSpeed: 2.3
+    money: 3.9
+    animatorSrc: Animations/Rat
+    attackPower: 0
+    attackSpeed: 0
+    attackRange: 0
+    attackType: none
+    attackCount: 0
+  - id: 1004
+    name: rat
+    hp: 60
+    mp: 0
+    maxHP: 60
+    maxMP: 0
+    moveSpeed: 2.4
+    money: 4.2
+    animatorSrc: Animations/Rat
+    attackPower: 0
+    attackSpeed: 0
+    attackRange: 0
+    attackType: none
+    attackCount: 0
+  - id: 1005
+    name: rat
+    hp: 70
+    mp: 0
+    maxHP: 70
+    maxMP: 0
+    moveSpeed: 2.5
+    money: 4.5
+    animatorSrc: Animations/Rat
+    attackPower: 0
+    attackSpeed: 0
+    attackRange: 0
+    attackType: none
+    attackCount: 0
+  - id: 1006
+    name: rat
+    hp: 80
+    mp: 0
+    maxHP: 80
+    maxMP: 0
+    moveSpeed: 2.6
+    money: 4.8
+    animatorSrc: Animations/Rat
+    attackPower: 0
+    attackSpeed: 0
+    attackRange: 0
+    attackType: none
+    attackCount: 0
+  - id: 1007
+    name: rat
+    hp: 90
+    mp: 0
+    maxHP: 90
+    maxMP: 0
+    moveSpeed: 2.7
+    money: 5.1
+    animatorSrc: Animations/Rat
+    attackPower: 0
+    attackSpeed: 0
+    attackRange: 0
+    attackType: none
+    attackCount: 0
+  - id: 1008
+    name: rat
+    hp: 100
+    mp: 0
+    maxHP: 100
+    maxMP: 0
+    moveSpeed: 2.8
+    money: 5.4
+    animatorSrc: Animations/Rat
+    attackPower: 0
+    attackSpeed: 0
+    attackRange: 0
+    attackType: none
+    attackCount: 0
+  - id: 1009
+    name: ratKing
+    hp: 3000
+    mp: 0
+    maxHP: 3000
+    maxMP: 0
+    moveSpeed: 3
+    money: 100
+    animatorSrc: Animations/Rat
+    attackPower: 0
+    attackSpeed: 0
+    attackRange: 0
+    attackType: none
+    attackCount: 0
+  - id: 1010
+    name: dog
+    hp: 200
+    mp: 0
+    maxHP: 200
+    maxMP: 0
+    moveSpeed: 1
+    money: 10
+    animatorSrc: Animations/Dog
+    attackPower: 0
+    attackSpeed: 0
+    attackRange: 0
+    attackType: none
+    attackCount: 0
+  - id: 1011
+    name: dog
+    hp: 230
+    mp: 0
+    maxHP: 230
+    maxMP: 0
+    moveSpeed: 1.2
+    money: 12.4
+    animatorSrc: Animations/Dog
+    attackPower: 0
+    attackSpeed: 0
+    attackRange: 0
+    attackType: none
+    attackCount: 0
+  - id: 1012
+    name: dog
+    hp: 260
+    mp: 0
+    maxHP: 260
+    maxMP: 0
+    moveSpeed: 1.4
+    money: 14.8
+    animatorSrc: Animations/Dog
+    attackPower: 0
+    attackSpeed: 0
+    attackRange: 0
+    attackType: none
+    attackCount: 0
+  - id: 1013
+    name: dog
+    hp: 290
+    mp: 0
+    maxHP: 290
+    maxMP: 0
+    moveSpeed: 1.6
+    money: 17.2
+    animatorSrc: Animations/Dog
+    attackPower: 0
+    attackSpeed: 0
+    attackRange: 0
+    attackType: none
+    attackCount: 0
+  - id: 1014
+    name: dog
+    hp: 320
+    mp: 0
+    maxHP: 320
+    maxMP: 0
+    moveSpeed: 1.8
+    money: 19.6
+    animatorSrc: Animations/Dog
+    attackPower: 0
+    attackSpeed: 0
+    attackRange: 0
+    attackType: none
+    attackCount: 0
+  - id: 1015
+    name: dog
+    hp: 350
+    mp: 0
+    maxHP: 350
+    maxMP: 0
+    moveSpeed: 2
+    money: 22
+    animatorSrc: Animations/Dog
+    attackPower: 0
+    attackSpeed: 0
+    attackRange: 0
+    attackType: none
+    attackCount: 0
+  - id: 1016
+    name: dog
+    hp: 380
+    mp: 0
+    maxHP: 380
+    maxMP: 0
+    moveSpeed: 2.2
+    money: 24.4
+    animatorSrc: Animations/Dog
+    attackPower: 0
+    attackSpeed: 0
+    attackRange: 0
+    attackType: none
+    attackCount: 0
+  - id: 1017
+    name: dog
+    hp: 410
+    mp: 0
+    maxHP: 410
+    maxMP: 0
+    moveSpeed: 2.4
+    money: 26.8
+    animatorSrc: Animations/Dog
+    attackPower: 0
+    attackSpeed: 0
+    attackRange: 0
+    attackType: none
+    attackCount: 0
+  - id: 1018
+    name: dog
+    hp: 440
+    mp: 0
+    maxHP: 440
+    maxMP: 0
+    moveSpeed: 2.6
+    money: 29.2
+    animatorSrc: Animations/Dog
+    attackPower: 0
+    attackSpeed: 0
+    attackRange: 0
+    attackType: none
+    attackCount: 0
+  - id: 1019
+    name: dogKing
+    hp: 10000
+    mp: 0
+    maxHP: 10000
+    maxMP: 0
+    moveSpeed: 4
+    money: 250
+    animatorSrc: Animations/Dog
+    attackPower: 0
+    attackSpeed: 0
+    attackRange: 0
+    attackType: none
+    attackCount: 0
+  WaveData:
+  - id: 10000
+    name: WAVE 01
+    monsterID: 1000
+    monsterCount: 5
+    clearMoney: 20
+    termSecond: 0.5
+  - id: 10001
+    name: WAVE 02
+    monsterID: 1001
+    monsterCount: 15
+    clearMoney: 45
+    termSecond: 0.49
+  - id: 10002
+    name: WAVE 03
+    monsterID: 1002
+    monsterCount: 25
+    clearMoney: 70
+    termSecond: 0.48
+  - id: 10003
+    name: WAVE 04
+    monsterID: 1003
+    monsterCount: 35
+    clearMoney: 95
+    termSecond: 0.47
+  - id: 10004
+    name: WAVE 05
+    monsterID: 1004
+    monsterCount: 45
+    clearMoney: 120
+    termSecond: 0.46
+  - id: 10005
+    name: WAVE 06
+    monsterID: 1005
+    monsterCount: 55
+    clearMoney: 145
+    termSecond: 0.45
+  - id: 10006
+    name: WAVE 07
+    monsterID: 1006
+    monsterCount: 65
+    clearMoney: 170
+    termSecond: 0.44
+  - id: 10007
+    name: WAVE 08
+    monsterID: 1007
+    monsterCount: 75
+    clearMoney: 195
+    termSecond: 0.43
+  - id: 10008
+    name: WAVE 09
+    monsterID: 1008
+    monsterCount: 85
+    clearMoney: 220
+    termSecond: 0.42
+  - id: 10009
+    name: WAVE 10
+    monsterID: 1009
+    monsterCount: 1
+    clearMoney: 0
+    termSecond: 0.41
+  - id: 10010
+    name: WAVE 11
+    monsterID: 1010
+    monsterCount: 105
+    clearMoney: 270
+    termSecond: 0.4
+  - id: 10011
+    name: WAVE 12
+    monsterID: 1011
+    monsterCount: 115
+    clearMoney: 295
+    termSecond: 0.39
+  - id: 10012
+    name: WAVE 13
+    monsterID: 1012
+    monsterCount: 125
+    clearMoney: 320
+    termSecond: 0.38
+  - id: 10013
+    name: WAVE 14
+    monsterID: 1013
+    monsterCount: 135
+    clearMoney: 345
+    termSecond: 0.37
+  - id: 10014
+    name: WAVE 15
+    monsterID: 1014
+    monsterCount: 145
+    clearMoney: 370
+    termSecond: 0.36
+  - id: 10015
+    name: WAVE 16
+    monsterID: 1015
+    monsterCount: 155
+    clearMoney: 395
+    termSecond: 0.35
+  - id: 10016
+    name: WAVE 17
+    monsterID: 1016
+    monsterCount: 165
+    clearMoney: 420
+    termSecond: 0.34
+  - id: 10017
+    name: WAVE 18
+    monsterID: 1017
+    monsterCount: 175
+    clearMoney: 445
+    termSecond: 0.33
+  - id: 10018
+    name: WAVE 19
+    monsterID: 1018
+    monsterCount: 185
+    clearMoney: 470
+    termSecond: 0.32
+  - id: 10019
+    name: WAVE 20
+    monsterID: 1019
+    monsterCount: 1
+    clearMoney: 0
+    termSecond: 0.32
+  UnitUpgradeData:
+  - id: 100000
+    level: 1
+    costType: gold
+    nextCost: 30
+    target: "\uC77C\uBC18~\uD76C\uADC0"
+    reinforceRatio: 0
+    imageSrc: Sprite/normal
+  - id: 100001
+    level: 2
+    costType: gold
+    nextCost: 50
+    target: "\uC77C\uBC18~\uD76C\uADC0"
+    reinforceRatio: 0.166
+    imageSrc: Sprite/normal
+  - id: 100002
+    level: 3
+    costType: gold
+    nextCost: 70
+    target: "\uC77C\uBC18~\uD76C\uADC0"
+    reinforceRatio: 0.332
+    imageSrc: Sprite/normal
+  - id: 100003
+    level: 4
+    costType: gold
+    nextCost: 90
+    target: "\uC77C\uBC18~\uD76C\uADC0"
+    reinforceRatio: 0.498
+    imageSrc: Sprite/normal
+  - id: 100004
+    level: 5
+    costType: gold
+    nextCost: 110
+    target: "\uC77C\uBC18~\uD76C\uADC0"
+    reinforceRatio: 0.664
+    imageSrc: Sprite/normal
+  - id: 100005
+    level: 6
+    costType: gold
+    nextCost: 130
+    target: "\uC77C\uBC18~\uD76C\uADC0"
+    reinforceRatio: 0.83
+    imageSrc: Sprite/normal
+  - id: 100006
+    level: 7
+    costType: gold
+    nextCost: 150
+    target: "\uC77C\uBC18~\uD76C\uADC0"
+    reinforceRatio: 0.996
+    imageSrc: Sprite/normal
+  - id: 100007
+    level: 8
+    costType: gold
+    nextCost: 170
+    target: "\uC77C\uBC18~\uD76C\uADC0"
+    reinforceRatio: 1.162
+    imageSrc: Sprite/normal
+  - id: 100008
+    level: 9
+    costType: gold
+    nextCost: 190
+    target: "\uC77C\uBC18~\uD76C\uADC0"
+    reinforceRatio: 1.328
+    imageSrc: Sprite/normal
+  - id: 100009
+    level: 10
+    costType: gold
+    nextCost: 210
+    target: "\uC77C\uBC18~\uD76C\uADC0"
+    reinforceRatio: 1.494
+    imageSrc: Sprite/normal
+  - id: 100010
+    level: 11
+    costType: gold
+    nextCost: 230
+    target: "\uC77C\uBC18~\uD76C\uADC0"
+    reinforceRatio: 1.66
+    imageSrc: Sprite/normal
+  - id: 100011
+    level: 12
+    costType: gold
+    nextCost: 250
+    target: "\uC77C\uBC18~\uD76C\uADC0"
+    reinforceRatio: 1.826
+    imageSrc: Sprite/normal
+  - id: 100012
+    level: Max
+    costType: gold
+    nextCost: 0
+    target: "\uC77C\uBC18~\uD76C\uADC0"
+    reinforceRatio: 1.992
+    imageSrc: Sprite/normal
+  - id: 200000
+    level: 1
+    costType: gold
+    nextCost: 50
+    target: "\uC601\uC6C5"
+    reinforceRatio: 0
+    imageSrc: Sprite/unique
+  - id: 200001
+    level: 2
+    costType: gold
+    nextCost: 80
+    target: "\uC601\uC6C5"
+    reinforceRatio: 0.166
+    imageSrc: Sprite/unique
+  - id: 200002
+    level: 3
+    costType: gold
+    nextCost: 110
+    target: "\uC601\uC6C5"
+    reinforceRatio: 0.332
+    imageSrc: Sprite/unique
+  - id: 200003
+    level: 4
+    costType: gold
+    nextCost: 140
+    target: "\uC601\uC6C5"
+    reinforceRatio: 0.498
+    imageSrc: Sprite/unique
+  - id: 200004
+    level: 5
+    costType: gold
+    nextCost: 170
+    target: "\uC601\uC6C5"
+    reinforceRatio: 0.664
+    imageSrc: Sprite/unique
+  - id: 200005
+    level: 6
+    costType: gold
+    nextCost: 200
+    target: "\uC601\uC6C5"
+    reinforceRatio: 0.83
+    imageSrc: Sprite/unique
+  - id: 200006
+    level: 7
+    costType: gold
+    nextCost: 230
+    target: "\uC601\uC6C5"
+    reinforceRatio: 0.996
+    imageSrc: Sprite/unique
+  - id: 200007
+    level: 8
+    costType: gold
+    nextCost: 260
+    target: "\uC601\uC6C5"
+    reinforceRatio: 1.162
+    imageSrc: Sprite/unique
+  - id: 200008
+    level: 9
+    costType: gold
+    nextCost: 290
+    target: "\uC601\uC6C5"
+    reinforceRatio: 1.328
+    imageSrc: Sprite/unique
+  - id: 200009
+    level: 10
+    costType: gold
+    nextCost: 320
+    target: "\uC601\uC6C5"
+    reinforceRatio: 1.494
+    imageSrc: Sprite/unique
+  - id: 200010
+    level: 11
+    costType: gold
+    nextCost: 350
+    target: "\uC601\uC6C5"
+    reinforceRatio: 1.66
+    imageSrc: Sprite/unique
+  - id: 200011
+    level: 12
+    costType: gold
+    nextCost: 380
+    target: "\uC601\uC6C5"
+    reinforceRatio: 1.826
+    imageSrc: Sprite/unique
+  - id: 200012
+    level: Max
+    costType: gold
+    nextCost: 0
+    target: "\uC601\uC6C5"
+    reinforceRatio: 1.992
+    imageSrc: Sprite/unique
+  - id: 300000
+    level: Infinity
+    costType: jual
+    nextCost: 2
+    target: "\uC804\uC124~\uC2E0\uD654"
+    reinforceRatio: 0
+    imageSrc: Sprite/legend
+  - id: 400000
+    level: 1
+    costType: gold
+    nextCost: 100
+    target: "\uC18C\uD658\uD655\uB960"
+    reinforceRatio: 0.166
+    imageSrc: Sprite/unit
+  - id: 400001
+    level: 2
+    costType: gold
+    nextCost: 100
+    target: "\uC18C\uD658\uD655\uB960"
+    reinforceRatio: 0.332
+    imageSrc: Sprite/unit
+  - id: 400002
+    level: 3
+    costType: gold
+    nextCost: 100
+    target: "\uC18C\uD658\uD655\uB960"
+    reinforceRatio: 0.498
+    imageSrc: Sprite/unit
+  - id: 400003
+    level: 4
+    costType: gold
+    nextCost: 100
+    target: "\uC18C\uD658\uD655\uB960"
+    reinforceRatio: 0.664
+    imageSrc: Sprite/unit
+  - id: 400004
+    level: 5
+    costType: gold
+    nextCost: 100
+    target: "\uC18C\uD658\uD655\uB960"
+    reinforceRatio: 0.83
+    imageSrc: Sprite/unit
+  - id: 400005
+    level: 6
+    costType: gold
+    nextCost: 100
+    target: "\uC18C\uD658\uD655\uB960"
+    reinforceRatio: 0.996
+    imageSrc: Sprite/unit
+  - id: 400006
+    level: 7
+    costType: gold
+    nextCost: 100
+    target: "\uC18C\uD658\uD655\uB960"
+    reinforceRatio: 1.162
+    imageSrc: Sprite/unit
+  - id: 400007
+    level: 8
+    costType: gold
+    nextCost: 100
+    target: "\uC18C\uD658\uD655\uB960"
+    reinforceRatio: 1.328
+    imageSrc: Sprite/unit
+  - id: 400008
+    level: 9
+    costType: gold
+    nextCost: 100
+    target: "\uC18C\uD658\uD655\uB960"
+    reinforceRatio: 1.494
+    imageSrc: Sprite/unit
+  - id: 400009
+    level: 10
+    costType: gold
+    nextCost: 100
+    target: "\uC18C\uD658\uD655\uB960"
+    reinforceRatio: 1.66
+    imageSrc: Sprite/unit
+  - id: 400010
+    level: 11
+    costType: gold
+    nextCost: 100
+    target: "\uC18C\uD658\uD655\uB960"
+    reinforceRatio: 1.826
+    imageSrc: Sprite/unit
+  - id: 400011
+    level: Max
+    costType: gold
+    nextCost: 0
+    target: "\uC18C\uD658\uD655\uB960"
+    reinforceRatio: 1.992
+    imageSrc: Sprite/unit
+  UnitSpawnProbability:
+  - id: 400000
+    normal: 97.44
+    unique: 1.97
+    hero: 0.49
+    legend: 0.1
+    myth: 0
+  - id: 400001
+    normal: 90.07
+    unique: 7.23
+    hero: 2.25
+    legend: 0.45
+    myth: 0
+  - id: 400002
+    normal: 83.73
+    unique: 11.74
+    hero: 3.77
+    legend: 0.75
+    myth: 0
+  - id: 400003
+    normal: 78.23
+    unique: 15.67
+    hero: 5.09
+    legend: 1.02
+    myth: 0
+  - id: 400004
+    normal: 73.4
+    unique: 19.11
+    hero: 6.24
+    legend: 1.25
+    myth: 0
+  - id: 400005
+    normal: 69.14
+    unique: 22.15
+    hero: 7.26
+    legend: 1.45
+    myth: 0
+  - id: 400006
+    normal: 65.34
+    unique: 24.85
+    hero: 8.17
+    legend: 1.63
+    myth: 0
+  - id: 400007
+    normal: 61.94
+    unique: 27.28
+    hero: 8.98
+    legend: 1.8
+    myth: 0
+  - id: 400008
+    normal: 58.88
+    unique: 29.46
+    hero: 9.72
+    legend: 1.94
+    myth: 0
+  - id: 400009
+    normal: 56.1
+    unique: 31.44
+    hero: 10.38
+    legend: 2.08
+    myth: 0
+  - id: 400010
+    normal: 53.58
+    unique: 33.24
+    hero: 10.98
+    legend: 2.2
+    myth: 0
+  - id: 400011
+    normal: 51.27
+    unique: 34.88
+    hero: 11.54
+    legend: 2.31
+    myth: 0
