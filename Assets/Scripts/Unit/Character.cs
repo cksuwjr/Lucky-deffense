@@ -34,6 +34,7 @@ public class Character : UnitBase
     {
         //transform.Find("AttackRange").TryGetComponent<AttackRange>(out  attackRange);
         animators = transform.GetComponentsInChildren<Animator>();
+        spriteRenderer = transform.GetComponentsInChildren<SpriteRenderer>();
     }
 
     public override void InitUnit(List<Path> movePath, Path startPos, UnitData unitData)
@@ -154,11 +155,11 @@ public class Character : UnitBase
             if (CurrentUnitData.mp < CurrentUnitData.maxMP)
             {
                 HealMana(10);
-                Debug.Log("마나회복");
+                //Debug.Log("마나회복");
             }
             else
             {
-                Debug.Log("스킬 사용");
+                //Debug.Log("스킬 사용");
                 if (manaSkill.Active())
                 {
                     CurrentUnitData.mp = 0;
@@ -174,35 +175,24 @@ public class Character : UnitBase
         }
     }
 
+    private void OnDisable()
+    {
+        for(int i = 0; i < animators.Length; i++)
+        {
+            animators[i].runtimeAnimatorController = null;
+        }
+        var sps = GetComponentsInChildren<SpriteRenderer>();
+        for (int i = 0; i < sps.Length; i++)
+        {
+            sps[i].sprite = null;
+        }
+        OutLine(false);
+    }
 
-    //private IEnumerator Skill1()
-    //{
-    //    if (skills[0].Active())
-    //    {
-    //        usingSkill = true;
-    //        for (int i = 0; i < animators.Length; i++)
-    //        {
-    //            animators[i].speed = CurrentUnitData.attackSpeed;
-    //            animators[i].SetTrigger("Skill1");
-    //        }
-
-    //        yield return YieldInstructionCache.WaitForSeconds(1f / CurrentUnitData.attackSpeed);
-
-    //        usingSkill = false;
-    //    }
-    //}
-
+    
     private void Update()
     {
-        //HealMana(Time.deltaTime * 0.01f);
-
         if (!movable) return;
-
-        //if (shootTime < Time.time)
-        //{
-        //    Attack();
-        //    shootTime = Time.time + 1f / CurrentUnitData.attackSpeed;
-        //}
     }
 
     public override void Die()

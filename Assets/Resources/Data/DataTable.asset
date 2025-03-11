@@ -124,7 +124,7 @@ MonoBehaviour:
     jual: 5
     animatorSrc: Animations/Slime
     attackPower: 9
-    attackSpeed: 1
+    attackSpeed: 3
     attackRange: 1
     attackType: long
     attackCount: 1

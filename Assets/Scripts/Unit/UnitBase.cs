@@ -34,6 +34,8 @@ public abstract class UnitBase : PoolObject, IUnit, IMove
     protected List<IActiveSkill> skills = new List<IActiveSkill>();
     protected IActiveSkill manaSkill;
 
+    protected SpriteRenderer[] spriteRenderer;
+
     public virtual void InitUnit(List<Path> movePath, Path startPos, UnitData unitData)
     {
         if(CurrentUnitData == null) CurrentUnitData = new UnitData();
@@ -113,10 +115,6 @@ public abstract class UnitBase : PoolObject, IUnit, IMove
         var attackRangeObject = transform.Find("AttackRange");
         if (!attackRangeObject) return;
 
-        
-        //if (attackRangeObject.TryGetComponent<AttackRange>(out var attackRange))
-        //    attackRange.Init(CurrentUnitData.attackRange);
-
     }
 
     public void Move(Vector3 positionA, Vector3 positionB, float t) 
@@ -190,4 +188,21 @@ public abstract class UnitBase : PoolObject, IUnit, IMove
     {
         ReturnToPool();
     }
+
+    public virtual void OutLine(bool tf)
+    {
+        if (spriteRenderer == null) return;
+
+        MaterialPropertyBlock mpb = new MaterialPropertyBlock();
+
+        for (int i = 0; i < spriteRenderer.Length; i++)
+        {
+            spriteRenderer[i].GetPropertyBlock(mpb);
+            mpb.SetFloat("_Outline", tf ? 1f : 0);
+            mpb.SetColor("_OutlineColor", Color.white);
+            mpb.SetFloat("_OutlineSize", 10);
+            spriteRenderer[i].SetPropertyBlock(mpb);
+        }
+    }
+
 }

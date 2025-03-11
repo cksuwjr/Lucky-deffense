@@ -56,22 +56,35 @@ public class UnitGroup : UnitBase
 
         var curPos = transform.position;
         var nextPos = CurrentPoint.position;
-
+        var aproachtime = Vector3.Distance(curPos, nextPos);
+        var arriveTime = 0f;
+        Debug.Log("도달시간:" + aproachtime);
         if (CurrentUnitData.moveSpeed == 0)
             CurrentUnitData.moveSpeed = 10;
+        var animators = GetComponentsInChildren<Animator>();
+        for (int j = 0; j < animators.Length; j++)
+            animators[j].SetBool("Move", true);
 
-        while (betweenRatio <= 1)
+        while (betweenRatio < 1)
         {
-            betweenRatio += Time.deltaTime * CurrentUnitData.moveSpeed;
-
+            arriveTime += Time.deltaTime * CurrentUnitData.moveSpeed;
+            betweenRatio = Mathf.Lerp(0, 1, arriveTime / aproachtime);
             Move(curPos, nextPos, betweenRatio);
+            if(uiVisible)
+                SetUIVisible(uiVisible);
 
-            //if (curPos.x < nextPos.x) SetDirection(Direction.Left);
-            //if (curPos.x > nextPos.x) SetDirection(Direction.Right);
+            for(int i = 0; i < units.Count; i++)
+            {
+                if (curPos.x < nextPos.x) units[i].SetDirection(Direction.Right);
+                if (curPos.x > nextPos.x) units[i].SetDirection(Direction.Left);
+            }
 
             yield return null;
         }
+        for (int j = 0; j < animators.Length; j++)
+            animators[j].SetBool("Move", false);
 
+        Debug.Log("도착");
         betweenRatio = 0f;
         movable = true;
     }
@@ -95,6 +108,7 @@ public class UnitGroup : UnitBase
                 units.Add(unit);
                 unit.SetAttackRange(attackRange);
                 Sort();
+                SetUIVisible(uiVisible);
                 return true;
             }
             else
@@ -137,6 +151,9 @@ public class UnitGroup : UnitBase
             units[i].transform.parent = slotTrans.GetChild(i);
             units[i].transform.localPosition = Vector3.zero;
         }
+
+        if (slotTrans == three)
+            OutLine(true);
     }
 
     public bool IsFull()
@@ -216,9 +233,12 @@ public class UnitGroup : UnitBase
     public void SetUIVisible(bool tf)
     {
         uiVisible = tf;
+        OutLine(tf);
+
         attackRangeSpriteRenderer.enabled = uiVisible;
         OnClickUnitGround?.Invoke(this, uiVisible);
     }
+
 
     private void UnitSlotClicked(UnitGroup unitSlot, bool arg2)
     {
@@ -230,5 +250,17 @@ public class UnitGroup : UnitBase
         }
     }
 
-    
+    public override void OutLine(bool tf)
+    {
+        if (units.Count < 3)
+        {
+            for (int i = 0; i < units.Count; i++)
+                units[i].OutLine(tf);
+        }
+        else
+        {
+            for (int i = 0; i < units.Count; i++)
+                units[i].OutLine(true);
+        }
+    }
 }
