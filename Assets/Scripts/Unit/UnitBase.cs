@@ -24,33 +24,78 @@ public abstract class UnitBase : PoolObject, IUnit, IMove
 
     public event Action<UnitBase> OnSpawned;
     public event Action<UnitBase> OnHit;
+    public event Action<UnitBase> OnManaUp;
     public event Action<UnitBase> OnDespawned;
 
     public bool movable = false;
     public bool dead = false;
 
     protected AttackRange attackRange;
+    protected List<IActiveSkill> skills = new List<IActiveSkill>();
+    protected IActiveSkill manaSkill;
 
     public virtual void InitUnit(List<Path> movePath, Path startPos, UnitData unitData)
     {
         if(CurrentUnitData == null) CurrentUnitData = new UnitData();
+        if (unitData is not null)
+        {
+            CurrentUnitData.name = unitData.name;
+            CurrentUnitData.id = unitData.id;
 
-        CurrentUnitData.name = unitData.name;
-        CurrentUnitData.id = unitData.id;
-        
 
-        CurrentUnitData.maxHP = unitData.maxHP;
-        CurrentUnitData.hp = unitData.hp;
-        CurrentUnitData.maxMP = unitData.maxMP;
-        CurrentUnitData.mp = unitData.mp;
-        CurrentUnitData.moveSpeed = unitData.moveSpeed;
-        CurrentUnitData.money = unitData.money;
-        CurrentUnitData.attackPower = unitData.attackPower;
-        CurrentUnitData.attackSpeed = unitData.attackSpeed;
-        CurrentUnitData.attackRange = unitData.attackRange;
-        CurrentUnitData.attackType = unitData.attackType;
-        CurrentUnitData.attackCount = unitData.attackCount;
+            CurrentUnitData.maxHP = unitData.maxHP;
+            CurrentUnitData.hp = unitData.hp;
+            CurrentUnitData.maxMP = unitData.maxMP;
+            CurrentUnitData.mp = unitData.mp;
+            CurrentUnitData.moveSpeed = unitData.moveSpeed;
+            CurrentUnitData.money = unitData.money;
+            CurrentUnitData.jual = unitData.jual;
+            CurrentUnitData.attackPower = unitData.attackPower;
+            CurrentUnitData.attackSpeed = unitData.attackSpeed;
+            CurrentUnitData.attackRange = unitData.attackRange;
+            CurrentUnitData.attackType = unitData.attackType;
+            CurrentUnitData.attackCount = unitData.attackCount;
 
+            CurrentUnitData.skillID1 = unitData.skillID1;
+            CurrentUnitData.skillID2 = unitData.skillID2;
+            CurrentUnitData.skillID3 = unitData.skillID3;
+            CurrentUnitData.manaSkill = unitData.manaSkill;
+
+            var skillManager = SkillManager.Instance;
+
+            skills.Clear();
+            SkillBase skill;
+            int skillID;
+
+            skillID = CurrentUnitData.skillID1;
+            if (skillID != 0)
+            {
+                skill = skillManager.GetSkill(skillID);
+                skills.Add(skill);
+                skill.Init(this);
+            }
+            skillID = CurrentUnitData.skillID2;
+            if (skillID != 0)
+            {
+                skill = skillManager.GetSkill(skillID);
+                skills.Add(skill);
+                skill.Init(this);
+            }
+            skillID = CurrentUnitData.skillID3;
+            if (skillID != 0)
+            {
+                skill = skillManager.GetSkill(skillID);
+                skills.Add(skill);
+                skill.Init(this);
+            }
+            skillID = CurrentUnitData.manaSkill;
+            if (skillID != 0)
+            {
+                skill = skillManager.GetSkill(skillID);
+                skill.Init(this);
+                manaSkill = skill;
+            }
+        }
         this.movePath = movePath;
         CurrentPoint = startPos;
         transform.position = new Vector3(startPos.position.x, startPos.position.y, 0);
@@ -62,10 +107,13 @@ public abstract class UnitBase : PoolObject, IUnit, IMove
 
         OnSpawned?.Invoke(this);
 
+        var unitUI = GetComponentInChildren<UnitUI>();
+        if (unitUI) unitUI.Init();
 
         var attackRangeObject = transform.Find("AttackRange");
         if (!attackRangeObject) return;
 
+        
         //if (attackRangeObject.TryGetComponent<AttackRange>(out var attackRange))
         //    attackRange.Init(CurrentUnitData.attackRange);
 
@@ -114,19 +162,28 @@ public abstract class UnitBase : PoolObject, IUnit, IMove
             Die();
     }
 
+    public virtual void HealMana(float value)
+    {
+        if (CurrentUnitData.maxMP <= 0) return;
+
+        if (CurrentUnitData.mp >= CurrentUnitData.maxMP) return;
+
+        CurrentUnitData.mp += 10;
+        OnManaUp?.Invoke(this);
+        
+    }
+
     public virtual void Die()
     {
         dead = true;
         SetMovable(false);
         OnDespawned?.Invoke(this);
         GameManager.Instance.walletManager.Gold += CurrentUnitData.money;
-
         if (PoolManager.Instance.toastGoldPool.GetPoolObject().TryGetComponent<ToastObject>(out ToastObject toastObject))
         {
             toastObject.transform.position = new Vector3(-0.58f, -2.64f); // jual = 0.14f
             toastObject.Init(CurrentUnitData.money, "+", ToastType.Bubble);
         }
-
     }
 
     protected virtual void DieAfter()

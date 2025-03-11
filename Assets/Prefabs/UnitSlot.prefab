@@ -466,6 +466,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movable: 0
   dead: 0
+  id: 0
+  unitSlot: {fileID: 0}
 --- !u!1 &8743205800796725930
 GameObject:
   m_ObjectHideFlags: 0

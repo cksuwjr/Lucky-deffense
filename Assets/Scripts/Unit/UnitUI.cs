@@ -7,18 +7,19 @@ using UnityEngine.UI;
 public class UnitUI : MonoBehaviour
 {
     private GameObject bar;
-    private Image hpBar;
+    private Image hpmpBar;
 
     private void Awake()
     {
         bar = transform.GetChild(0).gameObject;
-        bar.transform.GetChild(0).TryGetComponent<Image>(out hpBar);
+        bar.transform.GetChild(0).TryGetComponent<Image>(out hpmpBar);
         var unit = GetComponentInParent<UnitBase>();
         if (unit == null) return;
         
-        unit.OnHit += SetHpbar;
-        unit.OnDespawned += SetVisibleFalse;
+        unit.OnHit += SetHpMpbar;
+        unit.OnManaUp += SetHpMpbar;
 
+        unit.OnDespawned += SetVisibleFalse;
     }
 
 
@@ -37,9 +38,15 @@ public class UnitUI : MonoBehaviour
         SetVisible(false);
     }
 
-    private void SetHpbar(UnitBase unit)
+    private void SetHpMpbar(UnitBase unit)
     {
-        hpBar.fillAmount = unit.CurrentUnitData.hp / unit.CurrentUnitData.maxHP;
         SetVisible(true);
+
+        if (unit.CurrentUnitData.maxHP == 0f)
+            hpmpBar.fillAmount = unit.CurrentUnitData.mp / unit.CurrentUnitData.maxMP;
+        else if (unit.CurrentUnitData.mp == 0f)
+            hpmpBar.fillAmount = unit.CurrentUnitData.hp / unit.CurrentUnitData.maxHP;
+        else
+            SetVisible(false);
     }
 }

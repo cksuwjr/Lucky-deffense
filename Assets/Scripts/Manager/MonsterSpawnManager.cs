@@ -66,11 +66,11 @@ public class MonsterSpawnManager : MonoBehaviour
         {
             waveID = 10000 + wave;
             waveData = dataManager.GetWaveData(waveID);
-            GameManager.Instance.walletManager.Gold += waveData.clearMoney;
+            GameManager.Instance.walletManager.Gold += waveData.startMoney;
             if (PoolManager.Instance.toastGoldPool.GetPoolObject().TryGetComponent<ToastObject>(out ToastObject toastObject))
             {
                 toastObject.transform.position = new Vector3(-0.58f, -2.64f); // jual = 0.14f
-                toastObject.Init(waveData.clearMoney, "+", ToastType.Bubble);
+                toastObject.Init(waveData.startMoney, "+", ToastType.Bubble);
             }
 
             OnChangeWave?.Invoke(waveData);

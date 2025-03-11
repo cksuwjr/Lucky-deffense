@@ -4,24 +4,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UnitSlot : UnitBase
+public class UnitGroup : UnitBase
 {
+    public int id;
     private List<UnitBase> units;
-    public List<UnitBase> Units => units;
-    private SlotUI slotUI;
+    public List<UnitBase> GetUnits { get => units; set => units = value; }
+    public UnitSlot unitSlot;
 
-
-    private Transform one;
-    private Transform two;
-    private Transform three;
-    private Transform Myth;
+    private Transform one, two, three, Myth;
+    private SpriteRenderer attackRangeSpriteRenderer;
 
     private float shootTime;
-
-    public static event Action<UnitSlot, bool> OnClickUnitSlot;
-
-    private SpriteRenderer attackRangeSpriteRenderer;
     private bool uiVisible = false;
+
+    private float betweenRatio = 0f;
+
+    public static event Action<UnitGroup, bool> OnClickUnitGround;
+
 
     private void Awake()
     {
@@ -34,14 +33,47 @@ public class UnitSlot : UnitBase
         transform.Find("AttackRange").TryGetComponent<AttackRange>(out attackRange);
         attackRange.TryGetComponent<SpriteRenderer>(out attackRangeSpriteRenderer);
 
-        OnClickUnitSlot += UnitSlotClicked;
+        OnClickUnitGround += UnitSlotClicked;
     }
 
-    public void Init(SlotUI slotUI)
+    public void Init(int id, UnitSlot slotUI)
     {
-        this.slotUI = slotUI;
-
+        this.id = id;
+        this.unitSlot = slotUI;
         slotUI.Init(this);
+
+    }
+
+    public void Moves(Path Point)
+    {
+        StartCoroutine("StartMove", Point);
+    }
+
+    private IEnumerator StartMove(Path Point)
+    {
+        movable = false;
+        CurrentPoint = Point;
+
+        var curPos = transform.position;
+        var nextPos = CurrentPoint.position;
+
+        if (CurrentUnitData.moveSpeed == 0)
+            CurrentUnitData.moveSpeed = 10;
+
+        while (betweenRatio <= 1)
+        {
+            betweenRatio += Time.deltaTime * CurrentUnitData.moveSpeed;
+
+            Move(curPos, nextPos, betweenRatio);
+
+            //if (curPos.x < nextPos.x) SetDirection(Direction.Left);
+            //if (curPos.x > nextPos.x) SetDirection(Direction.Right);
+
+            yield return null;
+        }
+
+        betweenRatio = 0f;
+        movable = true;
     }
 
     public bool TryIn(UnitBase unit)
@@ -78,12 +110,8 @@ public class UnitSlot : UnitBase
         units.Remove(sellUnit);
         sellUnit.Die();
 
-        if (units.Count > 0)
-            Sort();
-        else
-        {
-            SetUIVisible(false);
-        }
+        if (units.Count > 0) Sort();
+        else SetUIVisible(false);
     }
 
     private void Clear()
@@ -99,17 +127,16 @@ public class UnitSlot : UnitBase
     private void Sort()
     {
         Transform slotTrans;
-        if (units.Count == 0)
-            return;
-        else if(units.Count == 1)
-            slotTrans = one;
-        else if(units.Count == 2)
-            slotTrans = two;
-        else
-            slotTrans = three;
+        if (units.Count == 0) return;
+        else if(units.Count == 1) slotTrans = one;
+        else if(units.Count == 2) slotTrans = two;
+        else slotTrans = three;
 
-        for(int i = 0; i < slotTrans.childCount; i++)
-            units[i].transform.position = slotTrans.GetChild(i).position;
+        for (int i = 0; i < slotTrans.childCount; i++)
+        {
+            units[i].transform.parent = slotTrans.GetChild(i);
+            units[i].transform.localPosition = Vector3.zero;
+        }
     }
 
     public bool IsFull()
@@ -117,10 +144,20 @@ public class UnitSlot : UnitBase
         return units.Count >= 3;
     }
 
+    public bool IsNull()
+    {
+        return units.Count == 0;
+    }
+
+    public int GetID()
+    {
+        return units[0].CurrentUnitData.id;
+    }
+
     public override void Attack()
     {
-        StartCoroutine("AttackSequence");
-        
+        if(movable)
+            StartCoroutine("AttackSequence");
     }
 
     private void Update()
@@ -159,24 +196,39 @@ public class UnitSlot : UnitBase
         if (units.Count < 1) return;
 
         SetUIVisible(false);
+        var nextSpawn = GetID() / 100;
         Clear();
+        switch(nextSpawn)
+        {
+            case 1:
+                GameManager.Instance.unitSpawnManager.UniqueSpawn(CurrentPoint.position);
+                break;
+            case 2:
+                GameManager.Instance.unitSpawnManager.HeroSpawn(CurrentPoint.position);
+                break;
+            case 3:
+                GameManager.Instance.unitSpawnManager.LegendSpawn(CurrentPoint.position);
+                break;
+        }
+
     }
 
     public void SetUIVisible(bool tf)
     {
         uiVisible = tf;
         attackRangeSpriteRenderer.enabled = uiVisible;
-        OnClickUnitSlot?.Invoke(this, uiVisible);
+        OnClickUnitGround?.Invoke(this, uiVisible);
     }
 
-    private void UnitSlotClicked(UnitSlot unitSlot, bool arg2)
+    private void UnitSlotClicked(UnitGroup unitSlot, bool arg2)
     {
-        if (units != unitSlot.Units)
+        if (units != unitSlot.GetUnits)
         {
             //MyUIVisible(false);
             uiVisible = false;
             attackRangeSpriteRenderer.enabled = uiVisible;
-
         }
     }
+
+    
 }

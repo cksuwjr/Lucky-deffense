@@ -15,6 +15,7 @@ public class GameManager : Singleton<GameManager>
     public UnitManager unitManager;
     public WalletManager walletManager;
     private SoundManager soundManager;
+    private SkillManager skillManager;
 
     protected override void DoAwake()
     {
@@ -28,6 +29,7 @@ public class GameManager : Singleton<GameManager>
         GameObject.Find("UnitSpawnManager")?.TryGetComponent<UnitSpawnManager>(out unitSpawnManager);
         GameObject.Find("WalletManager")?.TryGetComponent<WalletManager>(out walletManager);
         GameObject.Find("SoundManager")?.TryGetComponent<SoundManager>(out soundManager);
+        GameObject.Find("SkillManager")?.TryGetComponent<SkillManager>(out skillManager);
 
         InitManagers();
     }
@@ -48,8 +50,8 @@ public class GameManager : Singleton<GameManager>
                 task = dataManager.task;
             yield return null;
         }
-        unitManager.Init();
         mapManager.Init();
+        unitManager.Init();
         poolManager.Init();
         uiManager.Init();
         StartGame();
@@ -62,8 +64,9 @@ public class GameManager : Singleton<GameManager>
         soundManager.Init();
         walletManager.Init();
         timeManager.Init();
+
+        skillManager.Init();
         monsterSpawnManager.Init();
         unitSpawnManager.Init();
-
     }
 }

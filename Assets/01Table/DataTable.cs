@@ -11,5 +11,8 @@ public class DataTable : ScriptableObject
 	public List<UnitData> MonsterData; // Replace 'EntityType' to an actual type that is serializable.
 	public List<WaveData> WaveData; // Replace 'EntityType' to an actual type that is serializable.
 	public List<UnitUpgradeData> UnitUpgradeData;
+	public List<UnitSpawnData> UnitSpawnData;
 	public List<UnitSpawnProbability> UnitSpawnProbability;
+	public List<SkillData> SkillData;
+	public List<ProjectileData> ProjectileData;
 }
