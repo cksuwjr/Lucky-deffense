@@ -36,6 +36,7 @@ public class Pool : MonoBehaviour
     public void ReturnPoolObject(PoolObject returnObject)
     {
         returnObject.gameObject.SetActive(false);
+        returnObject.transform.SetParent(this.transform);
         poolObjects.Enqueue(returnObject);
     }
 

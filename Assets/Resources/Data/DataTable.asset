@@ -19,435 +19,621 @@ MonoBehaviour:
     name: are
   UnitData:
   - id: 100
-    name: BowMan
+    name: "\uD65C\uC7BD\uC774"
     hp: 0
-    mp: 100
+    mp: 0
     maxHP: 0
-    maxMP: 100
+    maxMP: 0
     moveSpeed: 2
-    money: 0
+    money: 10
+    jual: 0
     animatorSrc: Animations/BowMan
     attackPower: 8
     attackSpeed: 4
     attackRange: 2
     attackType: long
     attackCount: 1
+    skillID1: 0
+    skillID2: 0
+    skillID3: 0
+    manaSkill: 0
   - id: 101
-    name: SwordMan
+    name: "\uAC80\uC7BD\uC774"
+    hp: 0
+    mp: 0
+    maxHP: 0
+    maxMP: 0
+    moveSpeed: 1
+    money: 15
+    jual: 0
+    animatorSrc: Animations/SwordMan
+    attackPower: 25
+    attackSpeed: 2
+    attackRange: 0.75
+    attackType: melee
+    attackCount: 1
+    skillID1: 0
+    skillID2: 0
+    skillID3: 0
+    manaSkill: 0
+  - id: 102
+    name: "\uCD1D\uC7BD\uC774"
+    hp: 0
+    mp: 0
+    maxHP: 0
+    maxMP: 0
+    moveSpeed: 2
+    money: 10
+    jual: 0
+    animatorSrc: Animations/GunMan
+    attackPower: 10
+    attackSpeed: 6
+    attackRange: 1.75
+    attackType: melee
+    attackCount: 1
+    skillID1: 0
+    skillID2: 0
+    skillID3: 0
+    manaSkill: 0
+  - id: 200
+    name: "\uB18D"
     hp: 0
     mp: 100
     maxHP: 0
     maxMP: 100
-    moveSpeed: 1
+    moveSpeed: 2
     money: 0
-    animatorSrc: Animations/SwordMan
-    attackPower: 25
-    attackSpeed: 2
-    attackRange: 0.65
+    jual: 2
+    animatorSrc: Animations/Noung
+    attackPower: 40
+    attackSpeed: 3
+    attackRange: 0.85
     attackType: melee
     attackCount: 1
+    skillID1: 1000000
+    skillID2: 0
+    skillID3: 0
+    manaSkill: 1000001
+  - id: 201
+    name: "\uBAA8\uB798\uACE8\uB818"
+    hp: 0
+    mp: 100
+    maxHP: 0
+    maxMP: 100
+    moveSpeed: 2
+    money: 0
+    jual: 2
+    animatorSrc: Animations/Golem
+    attackPower: 250
+    attackSpeed: 0.7
+    attackRange: 0.75
+    attackType: melee
+    attackCount: 1
+    skillID1: 0
+    skillID2: 0
+    skillID3: 0
+    manaSkill: 0
+  - id: 300
+    name: "\uC2AC\uB77C\uC784"
+    hp: 0
+    mp: 100
+    maxHP: 0
+    maxMP: 100
+    moveSpeed: 2
+    money: 0
+    jual: 5
+    animatorSrc: Animations/Slime
+    attackPower: 9
+    attackSpeed: 1
+    attackRange: 1
+    attackType: long
+    attackCount: 1
+    skillID1: 0
+    skillID2: 0
+    skillID3: 0
+    manaSkill: 1000002
   MonsterData:
   - id: 1000
-    name: rat
+    name: "\uC950"
     hp: 20
     mp: 0
     maxHP: 20
     maxMP: 0
-    moveSpeed: 2
+    moveSpeed: 1.4
     money: 3
+    jual: 0
     animatorSrc: Animations/Rat
     attackPower: 0
     attackSpeed: 0
     attackRange: 0
     attackType: none
     attackCount: 0
+    skillID1: 0
+    skillID2: 0
+    skillID3: 0
+    manaSkill: 0
   - id: 1001
-    name: rat
+    name: "\uC950"
     hp: 30
     mp: 0
     maxHP: 30
     maxMP: 0
-    moveSpeed: 2.1
+    moveSpeed: 1.4
     money: 3.3
+    jual: 0
     animatorSrc: Animations/Rat
     attackPower: 0
     attackSpeed: 0
     attackRange: 0
     attackType: none
     attackCount: 0
+    skillID1: 0
+    skillID2: 0
+    skillID3: 0
+    manaSkill: 0
   - id: 1002
-    name: rat
-    hp: 40
-    mp: 0
-    maxHP: 40
-    maxMP: 0
-    moveSpeed: 2.2
-    money: 3.6
-    animatorSrc: Animations/Rat
-    attackPower: 0
-    attackSpeed: 0
-    attackRange: 0
-    attackType: none
-    attackCount: 0
-  - id: 1003
-    name: rat
+    name: "\uC950"
     hp: 50
     mp: 0
     maxHP: 50
     maxMP: 0
-    moveSpeed: 2.3
-    money: 3.9
+    moveSpeed: 1.4
+    money: 3.6
+    jual: 0
     animatorSrc: Animations/Rat
     attackPower: 0
     attackSpeed: 0
     attackRange: 0
     attackType: none
     attackCount: 0
-  - id: 1004
-    name: rat
-    hp: 60
-    mp: 0
-    maxHP: 60
-    maxMP: 0
-    moveSpeed: 2.4
-    money: 4.2
-    animatorSrc: Animations/Rat
-    attackPower: 0
-    attackSpeed: 0
-    attackRange: 0
-    attackType: none
-    attackCount: 0
-  - id: 1005
-    name: rat
-    hp: 70
-    mp: 0
-    maxHP: 70
-    maxMP: 0
-    moveSpeed: 2.5
-    money: 4.5
-    animatorSrc: Animations/Rat
-    attackPower: 0
-    attackSpeed: 0
-    attackRange: 0
-    attackType: none
-    attackCount: 0
-  - id: 1006
-    name: rat
+    skillID1: 0
+    skillID2: 0
+    skillID3: 0
+    manaSkill: 0
+  - id: 1003
+    name: "\uC950"
     hp: 80
     mp: 0
     maxHP: 80
     maxMP: 0
-    moveSpeed: 2.6
+    moveSpeed: 1.4
+    money: 3.9
+    jual: 0
+    animatorSrc: Animations/Rat
+    attackPower: 0
+    attackSpeed: 0
+    attackRange: 0
+    attackType: none
+    attackCount: 0
+    skillID1: 0
+    skillID2: 0
+    skillID3: 0
+    manaSkill: 0
+  - id: 1004
+    name: "\uC950"
+    hp: 120
+    mp: 0
+    maxHP: 120
+    maxMP: 0
+    moveSpeed: 1.4
+    money: 4.2
+    jual: 0
+    animatorSrc: Animations/Rat
+    attackPower: 0
+    attackSpeed: 0
+    attackRange: 0
+    attackType: none
+    attackCount: 0
+    skillID1: 0
+    skillID2: 0
+    skillID3: 0
+    manaSkill: 0
+  - id: 1005
+    name: "\uC950"
+    hp: 170
+    mp: 0
+    maxHP: 170
+    maxMP: 0
+    moveSpeed: 1.4
+    money: 4.5
+    jual: 0
+    animatorSrc: Animations/Rat
+    attackPower: 0
+    attackSpeed: 0
+    attackRange: 0
+    attackType: none
+    attackCount: 0
+    skillID1: 0
+    skillID2: 0
+    skillID3: 0
+    manaSkill: 0
+  - id: 1006
+    name: "\uC950"
+    hp: 230
+    mp: 0
+    maxHP: 230
+    maxMP: 0
+    moveSpeed: 1.4
     money: 4.8
+    jual: 0
     animatorSrc: Animations/Rat
     attackPower: 0
     attackSpeed: 0
     attackRange: 0
     attackType: none
     attackCount: 0
+    skillID1: 0
+    skillID2: 0
+    skillID3: 0
+    manaSkill: 0
   - id: 1007
-    name: rat
-    hp: 90
+    name: "\uC950"
+    hp: 300
     mp: 0
-    maxHP: 90
+    maxHP: 300
     maxMP: 0
-    moveSpeed: 2.7
+    moveSpeed: 1.4
     money: 5.1
+    jual: 0
     animatorSrc: Animations/Rat
     attackPower: 0
     attackSpeed: 0
     attackRange: 0
     attackType: none
     attackCount: 0
+    skillID1: 0
+    skillID2: 0
+    skillID3: 0
+    manaSkill: 0
   - id: 1008
-    name: rat
-    hp: 100
+    name: "\uC950"
+    hp: 380
     mp: 0
-    maxHP: 100
+    maxHP: 380
     maxMP: 0
-    moveSpeed: 2.8
+    moveSpeed: 1.4
     money: 5.4
+    jual: 0
     animatorSrc: Animations/Rat
     attackPower: 0
     attackSpeed: 0
     attackRange: 0
     attackType: none
     attackCount: 0
+    skillID1: 0
+    skillID2: 0
+    skillID3: 0
+    manaSkill: 0
   - id: 1009
-    name: ratKing
+    name: "\uAC70\uB300\uC950"
     hp: 3000
     mp: 0
     maxHP: 3000
     maxMP: 0
-    moveSpeed: 3
+    moveSpeed: 1.4
     money: 100
+    jual: 4
     animatorSrc: Animations/Rat
     attackPower: 0
     attackSpeed: 0
     attackRange: 0
     attackType: none
     attackCount: 0
+    skillID1: 0
+    skillID2: 0
+    skillID3: 0
+    manaSkill: 0
   - id: 1010
-    name: dog
+    name: "\uB4E4\uAC1C"
     hp: 200
     mp: 0
     maxHP: 200
     maxMP: 0
     moveSpeed: 1
     money: 10
+    jual: 0
     animatorSrc: Animations/Dog
     attackPower: 0
     attackSpeed: 0
     attackRange: 0
     attackType: none
     attackCount: 0
+    skillID1: 0
+    skillID2: 0
+    skillID3: 0
+    manaSkill: 0
   - id: 1011
-    name: dog
-    hp: 230
+    name: "\uB4E4\uAC1C"
+    hp: 300
     mp: 0
-    maxHP: 230
+    maxHP: 300
     maxMP: 0
     moveSpeed: 1.2
     money: 12.4
+    jual: 0
     animatorSrc: Animations/Dog
     attackPower: 0
     attackSpeed: 0
     attackRange: 0
     attackType: none
     attackCount: 0
+    skillID1: 0
+    skillID2: 0
+    skillID3: 0
+    manaSkill: 0
   - id: 1012
-    name: dog
-    hp: 260
+    name: "\uB4E4\uAC1C"
+    hp: 420
     mp: 0
-    maxHP: 260
+    maxHP: 420
     maxMP: 0
     moveSpeed: 1.4
     money: 14.8
+    jual: 0
     animatorSrc: Animations/Dog
     attackPower: 0
     attackSpeed: 0
     attackRange: 0
     attackType: none
     attackCount: 0
+    skillID1: 0
+    skillID2: 0
+    skillID3: 0
+    manaSkill: 0
   - id: 1013
-    name: dog
-    hp: 290
+    name: "\uB4E4\uAC1C"
+    hp: 560
     mp: 0
-    maxHP: 290
+    maxHP: 560
     maxMP: 0
     moveSpeed: 1.6
     money: 17.2
+    jual: 0
     animatorSrc: Animations/Dog
     attackPower: 0
     attackSpeed: 0
     attackRange: 0
     attackType: none
     attackCount: 0
+    skillID1: 0
+    skillID2: 0
+    skillID3: 0
+    manaSkill: 0
   - id: 1014
-    name: dog
-    hp: 320
+    name: "\uB4E4\uAC1C"
+    hp: 720
     mp: 0
-    maxHP: 320
+    maxHP: 720
     maxMP: 0
     moveSpeed: 1.8
     money: 19.6
+    jual: 0
     animatorSrc: Animations/Dog
     attackPower: 0
     attackSpeed: 0
     attackRange: 0
     attackType: none
     attackCount: 0
+    skillID1: 0
+    skillID2: 0
+    skillID3: 0
+    manaSkill: 0
   - id: 1015
-    name: dog
-    hp: 350
+    name: "\uB4E4\uAC1C"
+    hp: 900
     mp: 0
-    maxHP: 350
+    maxHP: 900
     maxMP: 0
     moveSpeed: 2
     money: 22
+    jual: 0
     animatorSrc: Animations/Dog
     attackPower: 0
     attackSpeed: 0
     attackRange: 0
     attackType: none
     attackCount: 0
+    skillID1: 0
+    skillID2: 0
+    skillID3: 0
+    manaSkill: 0
   - id: 1016
-    name: dog
-    hp: 380
+    name: "\uB4E4\uAC1C"
+    hp: 1100
     mp: 0
-    maxHP: 380
+    maxHP: 1100
     maxMP: 0
     moveSpeed: 2.2
     money: 24.4
+    jual: 0
     animatorSrc: Animations/Dog
     attackPower: 0
     attackSpeed: 0
     attackRange: 0
     attackType: none
     attackCount: 0
+    skillID1: 0
+    skillID2: 0
+    skillID3: 0
+    manaSkill: 0
   - id: 1017
-    name: dog
-    hp: 410
+    name: "\uB4E4\uAC1C"
+    hp: 1320
     mp: 0
-    maxHP: 410
+    maxHP: 1320
     maxMP: 0
     moveSpeed: 2.4
     money: 26.8
+    jual: 0
     animatorSrc: Animations/Dog
     attackPower: 0
     attackSpeed: 0
     attackRange: 0
     attackType: none
     attackCount: 0
+    skillID1: 0
+    skillID2: 0
+    skillID3: 0
+    manaSkill: 0
   - id: 1018
-    name: dog
-    hp: 440
+    name: "\uB4E4\uAC1C"
+    hp: 1560
     mp: 0
-    maxHP: 440
+    maxHP: 1560
     maxMP: 0
     moveSpeed: 2.6
     money: 29.2
+    jual: 0
     animatorSrc: Animations/Dog
     attackPower: 0
     attackSpeed: 0
     attackRange: 0
     attackType: none
     attackCount: 0
+    skillID1: 0
+    skillID2: 0
+    skillID3: 0
+    manaSkill: 0
   - id: 1019
-    name: dogKing
+    name: "\uAC70\uB300 \uB4E4\uAC1C"
     hp: 10000
     mp: 0
     maxHP: 10000
     maxMP: 0
     moveSpeed: 4
     money: 250
+    jual: 20
     animatorSrc: Animations/Dog
     attackPower: 0
     attackSpeed: 0
     attackRange: 0
     attackType: none
     attackCount: 0
+    skillID1: 0
+    skillID2: 0
+    skillID3: 0
+    manaSkill: 0
   WaveData:
   - id: 10000
     name: WAVE 01
     monsterID: 1000
     monsterCount: 5
-    clearMoney: 20
-    termSecond: 0.5
+    startMoney: 20
+    termSecond: 0.35
   - id: 10001
     name: WAVE 02
     monsterID: 1001
     monsterCount: 15
-    clearMoney: 45
-    termSecond: 0.49
+    startMoney: 45
+    termSecond: 0.35
   - id: 10002
     name: WAVE 03
     monsterID: 1002
     monsterCount: 25
-    clearMoney: 70
-    termSecond: 0.48
+    startMoney: 70
+    termSecond: 0.35
   - id: 10003
     name: WAVE 04
-    monsterID: 1003
+    monsterID: 1010
     monsterCount: 35
-    clearMoney: 95
-    termSecond: 0.47
+    startMoney: 95
+    termSecond: 0.35
   - id: 10004
     name: WAVE 05
     monsterID: 1004
     monsterCount: 45
-    clearMoney: 120
-    termSecond: 0.46
+    startMoney: 120
+    termSecond: 0.35
   - id: 10005
     name: WAVE 06
     monsterID: 1005
     monsterCount: 55
-    clearMoney: 145
-    termSecond: 0.45
+    startMoney: 145
+    termSecond: 0.35
   - id: 10006
     name: WAVE 07
     monsterID: 1006
     monsterCount: 65
-    clearMoney: 170
-    termSecond: 0.44
+    startMoney: 170
+    termSecond: 0.35
   - id: 10007
     name: WAVE 08
     monsterID: 1007
     monsterCount: 75
-    clearMoney: 195
-    termSecond: 0.43
+    startMoney: 195
+    termSecond: 0.35
   - id: 10008
     name: WAVE 09
     monsterID: 1008
     monsterCount: 85
-    clearMoney: 220
-    termSecond: 0.42
+    startMoney: 220
+    termSecond: 0.35
   - id: 10009
     name: WAVE 10
     monsterID: 1009
     monsterCount: 1
-    clearMoney: 0
-    termSecond: 0.41
+    startMoney: 0
+    termSecond: 0.35
   - id: 10010
     name: WAVE 11
     monsterID: 1010
     monsterCount: 105
-    clearMoney: 270
-    termSecond: 0.4
+    startMoney: 270
+    termSecond: 0.35
   - id: 10011
     name: WAVE 12
     monsterID: 1011
     monsterCount: 115
-    clearMoney: 295
-    termSecond: 0.39
+    startMoney: 295
+    termSecond: 0.35
   - id: 10012
     name: WAVE 13
     monsterID: 1012
     monsterCount: 125
-    clearMoney: 320
-    termSecond: 0.38
+    startMoney: 320
+    termSecond: 0.35
   - id: 10013
     name: WAVE 14
     monsterID: 1013
     monsterCount: 135
-    clearMoney: 345
-    termSecond: 0.37
+    startMoney: 345
+    termSecond: 0.35
   - id: 10014
     name: WAVE 15
     monsterID: 1014
     monsterCount: 145
-    clearMoney: 370
-    termSecond: 0.36
+    startMoney: 370
+    termSecond: 0.35
   - id: 10015
     name: WAVE 16
     monsterID: 1015
     monsterCount: 155
-    clearMoney: 395
+    startMoney: 395
     termSecond: 0.35
   - id: 10016
     name: WAVE 17
     monsterID: 1016
     monsterCount: 165
-    clearMoney: 420
-    termSecond: 0.34
+    startMoney: 420
+    termSecond: 0.35
   - id: 10017
     name: WAVE 18
     monsterID: 1017
     monsterCount: 175
-    clearMoney: 445
-    termSecond: 0.33
+    startMoney: 445
+    termSecond: 0.35
   - id: 10018
     name: WAVE 19
     monsterID: 1018
     monsterCount: 185
-    clearMoney: 470
-    termSecond: 0.32
+    startMoney: 470
+    termSecond: 0.35
   - id: 10019
     name: WAVE 20
     monsterID: 1019
     monsterCount: 1
-    clearMoney: 0
-    termSecond: 0.32
+    startMoney: 0
+    termSecond: 0.35
   UnitUpgradeData:
   - id: 100000
     level: 1
@@ -722,6 +908,22 @@ MonoBehaviour:
     target: "\uC18C\uD658\uD655\uB960"
     reinforceRatio: 1.992
     imageSrc: Sprite/unit
+  UnitSpawnData:
+  - id: 100000
+    costType: jual
+    cost: 1
+    spawnRatio: 0.6
+    imageSrc: Sprite/unique
+  - id: 200000
+    costType: jual
+    cost: 1
+    spawnRatio: 0.2
+    imageSrc: Sprite/hero
+  - id: 300000
+    costType: jual
+    cost: 2
+    spawnRatio: 0.1
+    imageSrc: Sprite/legend
   UnitSpawnProbability:
   - id: 400000
     normal: 97.44
@@ -795,3 +997,33 @@ MonoBehaviour:
     hero: 11.54
     legend: 2.31
     myth: 0
+  SkillData:
+  - id: 1000000
+    name: "\uAC15\uB825\uD55C \uBC1C\uCC28\uAE30!"
+    damageRatio: 40
+    imageSrc: Sprite/unique
+    range: 0.85
+    count: 1
+    chance: 0.08
+    mpCost: 0
+  - id: 1000001
+    name: "\uB354 \uAC15\uB825\uD55C \uBC1C\uCC28\uAE30!"
+    damageRatio: 400
+    imageSrc: Sprite/unique
+    range: 0.85
+    count: 99
+    chance: 0
+    mpCost: 100
+  - id: 1000002
+    name: "\uC2AC\uB77C\uC784\uBBF8\uC0AC\uC77C"
+    damageRatio: 11
+    imageSrc: Sprite/unique
+    range: 1
+    count: 999
+    chance: 0
+    mpCost: 100
+  ProjectileData:
+  - unitID: 100
+    spriteSrc: Sprite/Arrow
+  - unitID: 300
+    spriteSrc: Sprite/jual

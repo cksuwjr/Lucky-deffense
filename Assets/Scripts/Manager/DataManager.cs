@@ -23,8 +23,10 @@ public class DataManager : Singleton<DataManager>
     private Dictionary<int, UnitData> unitData = new Dictionary<int, UnitData>();
     private Dictionary<int, WaveData> waveData = new Dictionary<int, WaveData>();
     private Dictionary<int, UnitUpgradeData> unitUpgradeData = new Dictionary<int, UnitUpgradeData>();
+    private Dictionary<int, UnitSpawnData> unitSpawnData = new Dictionary<int, UnitSpawnData>();
     private Dictionary<int, UnitSpawnProbability> unitSpawnProbability = new Dictionary<int, UnitSpawnProbability>();
-
+    private Dictionary<int, SkillData> skillData = new Dictionary<int, SkillData>();
+    private Dictionary<int, ProjectileData> projectileData = new Dictionary<int, ProjectileData>();
 
     public static event Action<bool> OnDataLoad;
 
@@ -51,9 +53,17 @@ public class DataManager : Singleton<DataManager>
         for (int i = 0; i < data.UnitUpgradeData.Count; i++)
             unitUpgradeData.Add(data.UnitUpgradeData[i].id, data.UnitUpgradeData[i]);
 
+        for (int i = 0; i < data.UnitSpawnData.Count; i++)
+            unitSpawnData.Add(data.UnitSpawnData[i].id, data.UnitSpawnData[i]);
+
         for (int i = 0; i < data.UnitSpawnProbability.Count; i++)
             unitSpawnProbability.Add(data.UnitSpawnProbability[i].id, data.UnitSpawnProbability[i]);
 
+        for (int i = 0; i < data.SkillData.Count; i++)
+            skillData.Add(data.SkillData[i].id, data.SkillData[i]);
+
+        for(int i = 0; i < data.ProjectileData.Count; i++)
+            projectileData.Add(data.ProjectileData[i].unitID, data.ProjectileData[i]);
     }
 
     private void CheckLogin()
@@ -151,10 +161,31 @@ public class DataManager : Singleton<DataManager>
         return uUData;
     }
 
+    public UnitSpawnData GetUnitSpawnData(int id)
+    {
+        UnitSpawnData uUData;
+        unitSpawnData.TryGetValue(id, out uUData);
+        return uUData;
+    }
+
     public UnitSpawnProbability GetUnitSpawnProbability(int id)
     {
         UnitSpawnProbability usProbabilty;
         unitSpawnProbability.TryGetValue(id, out usProbabilty);
         return usProbabilty;
+    }
+
+    public SkillData GetSkillData(int id)
+    {
+        SkillData sData;
+        skillData.TryGetValue(id, out sData);
+        return sData;
+    }
+
+    public ProjectileData GetProjectileData(int id)
+    {
+        ProjectileData pData;
+        projectileData.TryGetValue(id, out pData);
+        return pData;
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using Unity.VisualScripting;
 
 public class UIManager : MonoBehaviour
 {
@@ -38,6 +39,16 @@ public class UIManager : MonoBehaviour
     private Transform unitUpgradeSlots;
 
 
+    private GameObject unitSpawnMenu;
+    private TextMeshProUGUI jualText3;
+    private TextMeshProUGUI unitText2;
+
+    private Transform unitSpawnSlots;
+
+
+
+
+
     private TextMeshProUGUI goldText;
     private TextMeshProUGUI jualText;
     private TextMeshProUGUI unitText;
@@ -60,7 +71,7 @@ public class UIManager : MonoBehaviour
     private Button unitInteractionButton;
 
 
-    private UnitSlot nowUnitSlot;
+    private UnitGroup nowUnitSlot;
 
 
     private void Awake()
@@ -94,7 +105,16 @@ public class UIManager : MonoBehaviour
         GameObject.Find("JualText2").TryGetComponent<TextMeshProUGUI>(out jualText2);
 
         GameObject.Find("UnitUpgradeSlots").TryGetComponent<Transform>(out unitUpgradeSlots);
-        
+
+
+        unitSpawnMenu = GameObject.Find("UnitSpawnMenu");
+        GameObject.Find("JualText3").TryGetComponent<TextMeshProUGUI>(out jualText3);
+        GameObject.Find("UnitText2").TryGetComponent<TextMeshProUGUI>(out unitText2);
+
+        GameObject.Find("UnitSpawnSlots").TryGetComponent<Transform>(out unitSpawnSlots);
+
+
+
 
         GameObject.Find("JualText").TryGetComponent<TextMeshProUGUI>(out jualText);
         GameObject.Find("GoldText").TryGetComponent<TextMeshProUGUI>(out goldText);
@@ -116,7 +136,7 @@ public class UIManager : MonoBehaviour
         unitManageButtons.GetChild(1).TryGetComponent<Button>(out unitInteractionButton);
 
 
-        UnitSlot.OnClickUnitSlot += SetUnitInformation;
+        UnitGroup.OnClickUnitGround += SetUnitInformation;
 
         DataManager.OnDataLoad += SetDataLoadPannel;
         MonsterSpawnManager.OnChangeWave += SetWaveAlert;
@@ -150,6 +170,17 @@ public class UIManager : MonoBehaviour
             if (slot.TryGetComponent<UpgradeSlot>(out var upgradeSlot))
                 upgradeSlot.Init((UnitType)(i+1), slotData.target, slotData.imageSrc, slotData.level, slotData.costType, slotData.nextCost);
         }
+
+        for(int i = 0; i < unitSpawnSlots.childCount; i++)
+        {
+            var id = (i + 1) * 100000;
+            var slotData = dataManager.GetUnitSpawnData(id);
+            var slot = unitSpawnSlots.GetChild(i);
+
+            if (slot.TryGetComponent<SpawnSlot>(out var spawnSlot))
+                spawnSlot.Init(slotData.imageSrc, slotData.spawnRatio, slotData.costType, slotData.cost);
+        }
+
 
 
         MonsterSpawnManager.OnChangeWave += SetWaveInformation;
@@ -202,13 +233,13 @@ public class UIManager : MonoBehaviour
             unitSpawnCostText.color = Color.white;
     }
 
-    private void SetUnitInformation(UnitSlot slot, bool open)
+    private void SetUnitInformation(UnitGroup slot, bool open)
     {
         if (open)
         {
             nowUnitSlot = slot;
 
-            var list = slot.Units;
+            var list = slot.GetUnits;
             var sprite = list[0].GetComponentInChildren<SpriteRenderer>().sprite;
             unitImage1.sprite = sprite;
             unitImage2.sprite = sprite;
@@ -256,22 +287,23 @@ public class UIManager : MonoBehaviour
         }
     }
 
-
-
     private void SetJualText(float value)
     {
         int nowJual = int.Parse(jualText.text);
 
         jualText.text = $"{value:F0}";
         jualText2.text = $"{value:F0}";
+        jualText3.text = $"{value:F0}";
 
         LeanTween.value(jualText.gameObject, (v) => { jualText.text = $"{v:F0}"; }, nowJual, value, 0.3f);
         LeanTween.value(jualText2.gameObject, (v) => { jualText2.text = $"{v:F0}"; }, nowJual, value, 0.3f);
+        LeanTween.value(jualText3.gameObject, (v) => { jualText3.text = $"{v:F0}"; }, nowJual, value, 0.3f);
     }
 
     private void SetUnitText(int count, int maxCount)
     {
         unitText.text = $"{count}/{maxCount}";
+        unitText2.text = $"{count}/{maxCount}";
     }
 
     private void SetUnitCostText(float value)
@@ -280,7 +312,7 @@ public class UIManager : MonoBehaviour
         
     }
 
-    private void LinkUnitSlotUI(int id, UnitSlot slot)
+    private void LinkUnitSlotUI(int id, UnitGroup slot)
     {
         var mapManager = GameManager.Instance.mapManager;
 
@@ -288,12 +320,7 @@ public class UIManager : MonoBehaviour
         slotTouch.transform.position = mapManager.UnitMapA()[id].position + new Vector2(0, 25f / 240);
         slotTouch.SetActive(true);
 
-        slot.Init(slotTouch.GetComponent<SlotUI>());
-        //if (slotTouch.TryGetComponent<SlotUI>(out var slotUI))
-        //    slotUI.Init(slotTouch.GetComponent<UnitSlot>());
-
-        if (slotTouch.TryGetComponent<Button>(out var button))
-            button.onClick.AddListener(slot.OnClickUnitSlotUI);
+        slot.Init(id, slotTouch.GetComponent<UnitSlot>());
     }
 
 
@@ -314,10 +341,16 @@ public class UIManager : MonoBehaviour
 
                 LeanTween.value(jualText2.gameObject, (color) => jualText2.color = color, Color.white, Color.red, 0.15f);
                 LeanTween.value(jualText2.gameObject, (color) => jualText2.color = color, Color.red, Color.white, 0.15f).setDelay(0.15f);
+
+                LeanTween.value(jualText2.gameObject, (color) => jualText3.color = color, Color.white, Color.red, 0.15f);
+                LeanTween.value(jualText3.gameObject, (color) => jualText3.color = color, Color.red, Color.white, 0.15f).setDelay(0.15f);
                 break;
             case FairReason.FullUnit:
                 LeanTween.value(unitText.gameObject, (color) => unitText.color = color, Color.white, Color.red, 0.15f);
                 LeanTween.value(unitText.gameObject, (color) => unitText.color = color, Color.red, Color.white, 0.15f).setDelay(0.15f);
+
+                LeanTween.value(unitText2.gameObject, (color) => unitText2.color = color, Color.white, Color.red, 0.15f);
+                LeanTween.value(unitText2.gameObject, (color) => unitText2.color = color, Color.red, Color.white, 0.15f).setDelay(0.15f);
                 break;
         }
     }
@@ -349,12 +382,20 @@ public class UIManager : MonoBehaviour
             LeanTween.scale(unitUpgradeMenu, Vector3.zero, 0.2f).setEase(LeanTweenType.easeInOutBounce);
     }
 
+    public void UnitSpawnOpenBtn()
+    {
+        var scale = unitSpawnMenu.transform.localScale;
 
+        if (scale == Vector3.zero)
+            LeanTween.scale(unitSpawnMenu, Vector3.one, 0.2f).setEase(LeanTweenType.easeInOutBounce);
+        else
+            LeanTween.scale(unitSpawnMenu, Vector3.zero, 0.2f).setEase(LeanTweenType.easeInOutBounce);
+    }
 
     //unitManageButtons);
     //unitSellButton);
     //unitInteractionButton);
-    private void SetUnitManageButtons(UnitSlot slot, bool tf)
+    private void SetUnitManageButtons(UnitGroup slot, bool tf)
     {
         if (tf)
         {
@@ -377,14 +418,14 @@ public class UIManager : MonoBehaviour
     }
 
 
-    private void Update()
-    {
-        if (!nowUnitSlot) return;
+    //private void Update()
+    //{
+    //    if (!nowUnitSlot) return;
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            nowUnitSlot.SetUIVisible(false);
-        }
+    //    if (Input.GetMouseButtonDown(0))
+    //    {
+    //        nowUnitSlot.SetUIVisible(false);
+    //    }
 
-    }
+    //}
 }

@@ -22,13 +22,19 @@ public class UnitData
     public float maxMP;
     public float moveSpeed;
     public float money;
+    public float jual;
     public string animatorSrc;
     public float attackPower;
     public float attackSpeed;
     public float attackRange;
     public string attackType;
     public int attackCount;
+    public int skillID1;
+    public int skillID2;
+    public int skillID3;
+    public int manaSkill;
 }
+
 
 [System.Serializable]
 public class WaveData
@@ -37,7 +43,7 @@ public class WaveData
     public string name;
     public int monsterID;
     public int monsterCount;
-    public float clearMoney;
+    public float startMoney;
     public float termSecond;
 }
 
@@ -62,4 +68,36 @@ public class UnitSpawnProbability
     public float hero;
     public float legend;
     public float myth;
+}
+
+[System.Serializable]
+public class UnitSpawnData
+{
+    public int id;
+    public string costType;
+    public float cost;
+    public float spawnRatio;
+    public string imageSrc;
+}
+
+
+[System.Serializable]
+public class SkillData
+{
+    public int id;
+    public string name;
+    public float damageRatio;
+    public string imageSrc;
+    public float range;
+    public int count;
+    public float chance;
+    public float mpCost;
+}
+
+
+[System.Serializable]
+public class ProjectileData
+{
+    public int unitID;
+    public string spriteSrc;
 }

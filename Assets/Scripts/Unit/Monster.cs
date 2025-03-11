@@ -47,8 +47,7 @@ public class Monster : UnitBase
     public override void InitUnit(List<Path> movePath, Path startPos, UnitData unitData)
     {
         base.InitUnit(movePath, startPos, unitData);
-        GetComponentInChildren<UnitUI>().Init();
-
+        
         if (animator == null) animator = GetComponentInChildren<Animator>();
         animator.SetTrigger("Live");
     }
