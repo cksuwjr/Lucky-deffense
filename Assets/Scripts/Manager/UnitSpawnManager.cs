@@ -168,12 +168,6 @@ public class UnitSpawnManager : MonoBehaviour
         var unit = PoolManager.Instance.unitPool.GetPoolObject();
         var dataManager = DataManager.Instance;
 
-        //Debug.Log(unitData.name);
-        var spriteRenderer = unit.GetComponentsInChildren<SpriteRenderer>();
-        for (int i = 0; i < spriteRenderer.Length; i++)
-            spriteRenderer[i].sprite = null;
-
-
         var anims = unit.GetComponentsInChildren<Animator>();
         for (int i = 0; i < anims.Length; i++)
             anims[i].runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(unitData.animatorSrc + anims[i].name);

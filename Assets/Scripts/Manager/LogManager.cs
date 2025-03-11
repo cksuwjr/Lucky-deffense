@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LogManager : MonoBehaviour
+public class LogManager : SingletonDestroy<LogManager>
 {
     private List<string> logs;
 

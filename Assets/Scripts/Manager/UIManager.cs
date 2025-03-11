@@ -405,6 +405,8 @@ public class UIManager : MonoBehaviour
             unitManageButtons.transform.position = slot.transform.position;
             unitManageButtons.transform.localScale = Vector3.one;
 
+            unitInteractionButton.gameObject.SetActive(slot.IsFull());
+
             unitSellButton.onClick.AddListener(slot.Sell);
             unitInteractionButton.onClick.AddListener(slot.Interaction);
         }
