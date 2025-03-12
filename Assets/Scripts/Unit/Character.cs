@@ -65,7 +65,7 @@ public class Character : UnitBase
                     animators[j].SetTrigger("Skill" + (i+1));
                 }
                 StartCoroutine("Wait");
-                Debug.Log("스킬이 발동되어 돌아갑니다");
+                //Debug.Log("스킬이 발동되어 돌아갑니다");
                 return;
             }
         }
@@ -136,7 +136,7 @@ public class Character : UnitBase
 
                         if (PoolManager.Instance.projectilePool.GetPoolObject().TryGetComponent<Projectile>(out var proj))
                         {
-                            proj.Init(this, enemys[i], 5, CurrentUnitData.attackPower * (1 + damageAddRatio));
+                            proj.Init(this, enemys[i], CurrentUnitData.attackSpeed / 2f , CurrentUnitData.attackPower * (1 + damageAddRatio));
                             
                             proj.transform.position = transform.position;
                         }

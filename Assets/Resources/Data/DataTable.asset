@@ -1002,7 +1002,7 @@ MonoBehaviour:
     name: "\uAC15\uB825\uD55C \uBC1C\uCC28\uAE30!"
     damageRatio: 40
     imageSrc: Sprite/unique
-    range: 0.85
+    range: 0.5
     count: 1
     chance: 0.08
     mpCost: 0
@@ -1010,7 +1010,7 @@ MonoBehaviour:
     name: "\uB354 \uAC15\uB825\uD55C \uBC1C\uCC28\uAE30!"
     damageRatio: 400
     imageSrc: Sprite/unique
-    range: 0.85
+    range: 0.5
     count: 99
     chance: 0
     mpCost: 100
@@ -1018,10 +1018,10 @@ MonoBehaviour:
     name: "\uC2AC\uB77C\uC784\uBBF8\uC0AC\uC77C"
     damageRatio: 11
     imageSrc: Sprite/unique
-    range: 1
-    count: 999
+    range: 0.5
+    count: 1
     chance: 0
-    mpCost: 100
+    mpCost: 200
   ProjectileData:
   - unitID: 100
     spriteSrc: Sprite/Arrow

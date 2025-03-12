@@ -12,7 +12,7 @@ public enum DataManagerTask
     LoadUserInformation,
 }
 
-public class DataManager : Singleton<DataManager>
+public class DataManager : SingletonDestroy<DataManager>
 {
     public bool isDataLoad = false;
     public DataManagerTask task = DataManagerTask.None;
@@ -90,7 +90,7 @@ public class DataManager : Singleton<DataManager>
         if (isDataLoad)
             OnDataLoad?.Invoke(false);
         else
-            StartCoroutine("LoadDataCoroutine", time);
+            StartCoroutine(LoadDataCoroutine(time));
     }
 
     private IEnumerator LoadDataCoroutine()
@@ -112,8 +112,10 @@ public class DataManager : Singleton<DataManager>
         LoadTable();
         yield return YieldInstructionCache.WaitForSeconds(time);
         CheckLogin();
+
         yield return YieldInstructionCache.WaitForSeconds(time);
         LoadUserInformation();
+
         yield return YieldInstructionCache.WaitForSeconds(time);
         isDataLoad = true;
         OnDataLoad?.Invoke(false);
@@ -157,6 +159,7 @@ public class DataManager : Singleton<DataManager>
     public UnitUpgradeData GetUnitUpgradeData(int id)
     {
         UnitUpgradeData uUData;
+
         unitUpgradeData.TryGetValue(id, out uUData);
         return uUData;
     }

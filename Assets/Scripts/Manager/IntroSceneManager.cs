@@ -28,7 +28,7 @@ public class IntroSceneManager : MonoBehaviour
     {
         var dataManager = DataManager.Instance;
 
-        DataManager.Instance.LoadData(2f);
+        DataManager.Instance.LoadData(0.5f);
 
         while (!dataManager.isDataLoad)
         {
@@ -41,7 +41,13 @@ public class IntroSceneManager : MonoBehaviour
             yield return null;
         }
 
-        SceneManager.LoadScene("GameScene");
+        SuccessLoading();
+    }
+
+    private void SuccessLoading()
+    {
+        LoadingSceneManager.SetNextScene("LobbyScene");
+        SceneManager.LoadScene("LoadingScene");
     }
 
     private void SetLoadingText(string text)

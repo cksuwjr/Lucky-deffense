@@ -31,7 +31,7 @@ public class SlimeMisile : SkillBase
         int j = enemys.Count - 1;
         var target = enemys[j];
 
-        for (int i = 0; i < skillData.count; i++)
+        for (int i = 0; i < 6; i++)
         {
             
             if (target.dead)
@@ -44,12 +44,14 @@ public class SlimeMisile : SkillBase
 
             if (PoolManager.Instance.projectilePool.GetPoolObject().TryGetComponent<Projectile>(out var proj))
             {
-                proj.Init(owner, target, 5, owner.CurrentUnitData.attackPower * skillData.damageRatio);
+                proj.Init(owner, target, 1.5f, owner.CurrentUnitData.attackPower * skillData.damageRatio);
                 proj.transform.position = owner.transform.position;
             }
-            j--;
-            
-            target = enemys[j];
+            if (PoolManager.Instance.projectilePool.GetPoolObject().TryGetComponent<Projectile>(out proj))
+            {
+                proj.Init(owner, target, 1.5f, owner.CurrentUnitData.attackPower * skillData.damageRatio);
+                proj.transform.position = owner.transform.position;
+            }
             yield return YieldInstructionCache.WaitForSeconds(0.05f);
         }
 
