@@ -20,11 +20,11 @@ public class MoreStrongKick : SkillBase
                     unit.GetDamage(owner.CurrentUnitData.attackPower * skillData.damageRatio);
                 }
             }
-            Debug.Log("스킬사용");
+            //Debug.Log("스킬사용");
 
             return true;
         }
-        Debug.Log("스킬사용실패");
+        //Debug.Log("스킬사용실패");
         return false;
     }
 }

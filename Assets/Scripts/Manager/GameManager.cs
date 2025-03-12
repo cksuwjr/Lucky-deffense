@@ -50,12 +50,12 @@ public class GameManager : Singleton<GameManager>
                 task = dataManager.task;
             yield return null;
         }
+
         mapManager.Init();
         unitManager.Init();
         poolManager.Init();
         uiManager.Init();
         StartGame();
-
     }
 
 

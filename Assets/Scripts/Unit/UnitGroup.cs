@@ -58,7 +58,7 @@ public class UnitGroup : UnitBase
         var nextPos = CurrentPoint.position;
         var aproachtime = Vector3.Distance(curPos, nextPos);
         var arriveTime = 0f;
-        Debug.Log("도달시간:" + aproachtime);
+        //Debug.Log("도달시간:" + aproachtime);
         if (CurrentUnitData.moveSpeed == 0)
             CurrentUnitData.moveSpeed = 10;
         var animators = GetComponentsInChildren<Animator>();
@@ -84,7 +84,7 @@ public class UnitGroup : UnitBase
         for (int j = 0; j < animators.Length; j++)
             animators[j].SetBool("Move", false);
 
-        Debug.Log("도착");
+        //Debug.Log("도착");
         betweenRatio = 0f;
         movable = true;
     }

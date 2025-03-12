@@ -24,7 +24,7 @@ public class StrongKick : SkillBase
                 enemys[i].GetDamage(owner.CurrentUnitData.attackPower * skillData.damageRatio);
 
 
-            Debug.Log("스킬사용");
+            //Debug.Log("스킬사용");
 
             return true;
         }

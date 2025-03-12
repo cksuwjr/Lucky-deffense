@@ -161,14 +161,19 @@ public class UIManager : MonoBehaviour
 
         SetGameInformation();
 
+        Debug.Log(unitUpgradeSlots.childCount);
         for (int i = 0; i < unitUpgradeSlots.childCount; i++)
         {
             var id = (i + 1) * 100000;
             var slotData = dataManager.GetUnitUpgradeData(id);
             var slot = unitUpgradeSlots.GetChild(i);
 
+            Debug.Log(slot);
+
             if (slot.TryGetComponent<UpgradeSlot>(out var upgradeSlot))
-                upgradeSlot.Init((UnitType)(i+1), slotData.target, slotData.imageSrc, slotData.level, slotData.costType, slotData.nextCost);
+            {
+                upgradeSlot.Init((UnitType)(i + 1), slotData.target, slotData.imageSrc, slotData.level, slotData.costType, slotData.nextCost);
+            }
         }
 
         for(int i = 0; i < unitSpawnSlots.childCount; i++)
