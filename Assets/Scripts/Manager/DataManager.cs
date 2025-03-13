@@ -12,7 +12,7 @@ public enum DataManagerTask
     LoadUserInformation,
 }
 
-public class DataManager : SingletonDestroy<DataManager>
+public class DataManager : Singleton<DataManager>
 {
     public bool isDataLoad = false;
     public DataManagerTask task = DataManagerTask.None;

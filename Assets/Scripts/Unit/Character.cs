@@ -150,11 +150,9 @@ public class Character : UnitBase
         {
             CurrentUnitData.maxMP = manaSkill.MPCost;
 
-
-
             if (CurrentUnitData.mp < CurrentUnitData.maxMP)
             {
-                HealMana(10);
+                HealMana(3);
                 //Debug.Log("마나회복");
             }
             else

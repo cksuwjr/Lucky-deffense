@@ -17,7 +17,7 @@ public class GameManager : Singleton<GameManager>
     private SoundManager soundManager;
     private SkillManager skillManager;
 
-    protected override void DoAwake()
+    private void Start()
     {
         GameObject.Find("DataManager")?.TryGetComponent<DataManager>(out dataManager);
         GameObject.Find("MapManager")?.TryGetComponent<MapManager>(out mapManager);

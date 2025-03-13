@@ -1016,7 +1016,7 @@ MonoBehaviour:
     mpCost: 100
   - id: 1000002
     name: "\uC2AC\uB77C\uC784\uBBF8\uC0AC\uC77C"
-    damageRatio: 11
+    damageRatio: 111
     imageSrc: Sprite/unique
     range: 0.5
     count: 1

@@ -10,6 +10,9 @@ public enum UnitType
     Hero = 2,
     Legend = 3,
     Myth = 30,
+
+    Null = 4,
+    Null2 = 40,
 }
 
 public class UnitManager : MonoBehaviour

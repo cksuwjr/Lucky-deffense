@@ -65,10 +65,37 @@ public class UnitSpawnManager : MonoBehaviour
             return;
         }
 
-        var unit = SpawnUnit(DataManager.Instance.GetUnitData(100 + Random.Range(0, 3)));
+        var spawnRatioData = DataManager.Instance.GetUnitSpawnProbability(400000);
+        var randValue = Random.Range(0f, 100f);
+        int spawnID = 100 + Random.Range(0, 3);
+        var sum = 0f;
+        var now = spawnRatioData.normal;
+
+        sum += spawnRatioData.normal;
+        if (randValue <= sum)
+        {
+            spawnID = 100 + Random.Range(0, 3);
+            now = spawnRatioData.normal;
+        }
+        //sum += spawnRatioData.unique;
+        //if (sum< randValue && <= sum)
+        //{
+        //    spawnID = 200 + Random.Range(0, 2);
+        //    now = spawnRatioData.unique;
+        //}
+        //sum += spawnRatioData.hero;
+        //if (randValue <= sum)
+        //{
+        //    spawnID = 300 + Random.Range(0, 1);
+        //    now = spawnRatioData.hero;
+
+        //}
+        var unit = SpawnUnit(DataManager.Instance.GetUnitData(spawnID));
         PlaceUnit(unit, new Vector3(0, -3.4f), () => {
             GameManager.Instance.walletManager.Gold -= SpawnCost;
             SpawnCost += 2;
+
+            LogManager.Instance.Log($"{DataManager.Instance.GetUserData(0).name}님이 {now:0} % 확률을 뜰고 \"{unit.CurrentUnitData.name}\"영웅을 소환!");
         });
     }
 
@@ -82,8 +109,24 @@ public class UnitSpawnManager : MonoBehaviour
             return;
         }
 
+        var spawnData = DataManager.Instance.GetUnitSpawnData(100000);
+
+        if (Random.Range(0f, 1f) > spawnData.spawnRatio)
+        {
+            LogManager.Instance.Log($"<color=red>운빨 소환 실패..</color>");
+            GameManager.Instance.walletManager.Jual -= spawnData.cost;
+            return;
+        }
+
+
+
         var unit = SpawnUnit(DataManager.Instance.GetUnitData(200 + Random.Range(0, 2)));
-        PlaceUnit(unit, new Vector3(0, -3.4f), () => { GameManager.Instance.walletManager.Jual -= 1; });
+        PlaceUnit(unit, new Vector3(0, -3.4f), () => 
+        { 
+            GameManager.Instance.walletManager.Jual -= spawnData.cost;
+            LogManager.Instance.Log($"{DataManager.Instance.GetUserData(0).name}님이 {(spawnData.spawnRatio * 100) : 0} % 확률을 뜰고 \"<color=blue>{unit.CurrentUnitData.name}</color>\"영웅을 소환!");
+
+        });
     }
 
     public void OnClickLuckyHeroSpawnBtn()
@@ -95,9 +138,22 @@ public class UnitSpawnManager : MonoBehaviour
             OnSpawnFail?.Invoke(FairReason.ShortJual);
             return;
         }
+        var spawnData = DataManager.Instance.GetUnitSpawnData(200000);
+
+        if (Random.Range(0f, 1f) > spawnData.spawnRatio)
+        {
+            LogManager.Instance.Log($"<color=red>운빨 소환 실패..</color>");
+            GameManager.Instance.walletManager.Jual -= spawnData.cost;
+            return;
+        }
 
         var unit = SpawnUnit(DataManager.Instance.GetUnitData(300 + Random.Range(0, 1)));
-        PlaceUnit(unit, new Vector3(0, -3.4f), () => { GameManager.Instance.walletManager.Jual -= 1; });
+        PlaceUnit(unit, new Vector3(0, -3.4f), () => 
+        { 
+            GameManager.Instance.walletManager.Jual -= spawnData.cost;
+            LogManager.Instance.Log($"{DataManager.Instance.GetUserData(0).name}님이 {spawnData.spawnRatio * 100: 0} % 확률을 뜰고 \"<color=purple>{unit.CurrentUnitData.name}</color>\"영웅을 소환!");
+
+        });
     }
 
     public void OnClickLuckyLegendSpawnBtn()
@@ -109,11 +165,28 @@ public class UnitSpawnManager : MonoBehaviour
             OnSpawnFail?.Invoke(FairReason.ShortJual);
             return;
         }
+
+
+
         Debug.Log("아직 구현되지않았습니다 + return됨");
         return;
+        var spawnData = DataManager.Instance.GetUnitSpawnData(300000);
+
+        if (Random.Range(0f, 1f) > spawnData.spawnRatio)
+        {
+            LogManager.Instance.Log($"<color=red>운빨 소환 실패..</color>");
+            GameManager.Instance.walletManager.Jual -= spawnData.cost;
+            return;
+        }
+
 
         var unit = SpawnUnit(DataManager.Instance.GetUnitData(400 + Random.Range(0, 1)));
-        PlaceUnit(unit, new Vector3(0, -3.4f), () => { GameManager.Instance.walletManager.Jual -= 2; });
+        PlaceUnit(unit, new Vector3(0, -3.4f), () => 
+        { 
+            GameManager.Instance.walletManager.Jual -= spawnData.cost;
+            LogManager.Instance.Log($"{DataManager.Instance.GetUserData(0).name}님이 {spawnData.spawnRatio * 100: D0}% 확률을 뜷고 \"{unit.CurrentUnitData.name}\"영웅을 소환!");
+
+        });
     }
 
     public void UniqueSpawn(Vector3 startPos)
@@ -123,7 +196,7 @@ public class UnitSpawnManager : MonoBehaviour
         if (unit == null)
         {
             GameManager.Instance.walletManager.Jual += 1;
-            Debug.Log("유닛이 가득차 보석+1로 대체됩니다.");
+            LogManager.Instance.Log($"유닛이 가득차 보석+1로 대체됩니다.");
         }
     }
 
@@ -134,7 +207,7 @@ public class UnitSpawnManager : MonoBehaviour
         if (unit == null)
         {
             GameManager.Instance.walletManager.Jual += 2;
-            Debug.Log("유닛이 가득차 보석+2로 대체됩니다.");
+            LogManager.Instance.Log($"유닛이 가득차 보석+2로 대체됩니다.");
         }
     }
 
@@ -145,7 +218,7 @@ public class UnitSpawnManager : MonoBehaviour
         if (unit == null)
         {
             GameManager.Instance.walletManager.Jual += 4;
-            Debug.Log("유닛이 가득차 보석+4로 대체됩니다.");
+            LogManager.Instance.Log($"유닛이 가득차 보석+4로 대체됩니다.");
         }
     }
 

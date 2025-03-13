@@ -17,6 +17,6 @@ public class WalletManager : MonoBehaviour
     public void Init()
     {
         Gold = 70;
-        Jual = 0;
+        Jual = 20;
     }
 }

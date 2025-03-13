@@ -28,33 +28,66 @@ public class SlimeMisile : SkillBase
             }
         }
 
-        int j = enemys.Count - 1;
-        var target = enemys[j];
-
-        for (int i = 0; i < 6; i++)
+        if (enemys.Count > 0)
         {
-            
-            if (target.dead)
-            {
-                j--;
-                if (j < 1)
-                    j = enemys.Count - 1;
-                target = enemys[j--];
-            }
+            int j = 0;
 
-            if (PoolManager.Instance.projectilePool.GetPoolObject().TryGetComponent<Projectile>(out var proj))
+            UnitBase target = enemys[j];
+            var totalDamage = 0f;
+
+            for (int i = 0; i < 12; i++)
             {
-                proj.Init(owner, target, 1.5f, owner.CurrentUnitData.attackPower * skillData.damageRatio);
-                proj.transform.position = owner.transform.position;
+                if (target.dead)
+                {
+                    if (j < enemys.Count - 1)
+                        j++;
+                    else
+                        j = 0;
+
+                    target = enemys[j];
+                }
+
+                if (PoolManager.Instance.projectilePool.GetPoolObject().TryGetComponent<Projectile>(out var proj))
+                {
+                    var damage = owner.CurrentUnitData.attackPower * skillData.damageRatio;
+                    totalDamage += damage;
+                    proj.Init(owner, target, 1.5f, damage);
+                    proj.transform.position = owner.transform.position;
+
+                    if (totalDamage > target.CurrentUnitData.hp)
+                    {
+                        if (j < enemys.Count - 1)
+                            j++;
+                        else
+                            j = 0;
+
+                        target = enemys[j];
+                        totalDamage = 0;
+                    }
+                }
+                if (PoolManager.Instance.projectilePool.GetPoolObject().TryGetComponent<Projectile>(out proj))
+                {
+                    var damage = owner.CurrentUnitData.attackPower * skillData.damageRatio;
+                    totalDamage += damage;
+
+                    proj.Init(owner, target, 1.5f, damage);
+                    proj.transform.position = owner.transform.position;
+
+                    if (totalDamage > target.CurrentUnitData.hp)
+                    {
+                        if (j < enemys.Count - 1)
+                            j++;
+                        else
+                            j = 0;
+
+                        target = enemys[j];
+                        totalDamage = 0;
+                    }
+                }
+                yield return YieldInstructionCache.WaitForSeconds(0.05f);
+                j++;
             }
-            if (PoolManager.Instance.projectilePool.GetPoolObject().TryGetComponent<Projectile>(out proj))
-            {
-                proj.Init(owner, target, 1.5f, owner.CurrentUnitData.attackPower * skillData.damageRatio);
-                proj.transform.position = owner.transform.position;
-            }
-            yield return YieldInstructionCache.WaitForSeconds(0.05f);
         }
-
 
         //int j = enemys.Count - 1;
         //var target = enemys[j];
