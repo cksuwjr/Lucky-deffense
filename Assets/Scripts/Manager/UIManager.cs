@@ -62,7 +62,7 @@ public class UIManager : MonoBehaviour
     private TextMeshProUGUI waveAlertText;
 
 
-    private Transform logTransform;
+    private TextMeshProUGUI logTexts;
 
     private Transform unitSlotTransform;
     private GameObject unitSlot;
@@ -121,7 +121,7 @@ public class UIManager : MonoBehaviour
         GameObject.Find("UnitCountText").TryGetComponent<TextMeshProUGUI>(out unitText);
         GameObject.Find("UnitSpawnCostText").TryGetComponent<TextMeshProUGUI>(out unitSpawnCostText);
 
-        GameObject.Find("LogContent").TryGetComponent<Transform>(out logTransform);
+        GameObject.Find("LogTexts").TryGetComponent<TextMeshProUGUI>(out logTexts);
 
 
         dataLoading = GameObject.Find("DataLoading");
@@ -150,6 +150,7 @@ public class UIManager : MonoBehaviour
 
         WalletManager.OnChangeGold += SetGoldText;
         WalletManager.OnChangeJual += SetJualText;
+
     }
 
     public void Init()
@@ -161,19 +162,14 @@ public class UIManager : MonoBehaviour
 
         SetGameInformation();
 
-        Debug.Log(unitUpgradeSlots.childCount);
         for (int i = 0; i < unitUpgradeSlots.childCount; i++)
         {
             var id = (i + 1) * 100000;
             var slotData = dataManager.GetUnitUpgradeData(id);
             var slot = unitUpgradeSlots.GetChild(i);
 
-            Debug.Log(slot);
-
             if (slot.TryGetComponent<UpgradeSlot>(out var upgradeSlot))
-            {
                 upgradeSlot.Init((UnitType)(i + 1), slotData.target, slotData.imageSrc, slotData.level, slotData.costType, slotData.nextCost);
-            }
         }
 
         for(int i = 0; i < unitSpawnSlots.childCount; i++)
@@ -190,6 +186,7 @@ public class UIManager : MonoBehaviour
 
         MonsterSpawnManager.OnChangeWave += SetWaveInformation;
         MonsterSpawnManager.OnChangeMonsterCount += SetMonsterCount;
+        LogManager.Instance.OnLogCreate += SetLogTexts;
 
         TimeManager.OnSecondChange += SetTimeInformation;
     }
@@ -424,15 +421,8 @@ public class UIManager : MonoBehaviour
 
     }
 
-
-    //private void Update()
-    //{
-    //    if (!nowUnitSlot) return;
-
-    //    if (Input.GetMouseButtonDown(0))
-    //    {
-    //        nowUnitSlot.SetUIVisible(false);
-    //    }
-
-    //}
+    private void SetLogTexts(string log)
+    {
+        logTexts.text += "\n" + log;
+    }
 }

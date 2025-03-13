@@ -19,19 +19,13 @@ public class UpgradeSlot : MonoBehaviour
 
     private void Awake()
     {
-        transform.GetChild(0).TryGetComponent<TextMeshProUGUI>(out typeText);
-        transform.GetChild(1).TryGetComponent<Image>(out typeImage);
-        transform.GetChild(2).TryGetComponent<TextMeshProUGUI>(out levelText);
-        transform.GetChild(3).TryGetComponent<Button>(out upgradeButton);
-        upgradeButton.transform.GetChild(0).TryGetComponent<Image>(out upgradeImage);
-        upgradeButton.transform.GetChild(1).TryGetComponent<TextMeshProUGUI>(out costText);
+        assign();
     }
 
     public void Init(UnitType type, string typeT, string typeImageSrc, string level, string costType, float cost)
     {
         this.type = type;
         SetSlotUI(typeT, typeImageSrc, level, costType, cost);
-
         upgradeButton.onClick.AddListener(() => GameManager.Instance.unitManager.UnitUpgrade(type));
         upgradeButton.onClick.AddListener(() => GameManager.Instance.unitManager.UnitUpgrade((UnitType)(10 * (int)type)));
         UnitManager.OnUpgrade += SetSlot;
@@ -53,5 +47,15 @@ public class UpgradeSlot : MonoBehaviour
             costText.text = $"{level}";
         else
             costText.text = $"{cost:F0}";
+    }
+
+    private void assign()
+    {
+        if(!typeText) transform.GetChild(0).TryGetComponent<TextMeshProUGUI>(out typeText);
+        if(!typeImage) transform.GetChild(1).TryGetComponent<Image>(out typeImage);
+        if(!levelText) transform.GetChild(2).TryGetComponent<TextMeshProUGUI>(out levelText);
+        if(!upgradeButton) transform.GetChild(3).TryGetComponent<Button>(out upgradeButton);
+        if(!upgradeImage) upgradeButton.transform.GetChild(0).TryGetComponent<Image>(out upgradeImage);
+        if(!costText) upgradeButton.transform.GetChild(1).TryGetComponent<TextMeshProUGUI>(out costText);
     }
 }
